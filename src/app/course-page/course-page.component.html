@@ -1,6 +1,7 @@
+<br />
 <div style="float: center;">
   <!-- Card with information -->
-  <div class="card-header bg-primary mb-2 infocard">
+  <div class="card-header bg-primary mx-auto mb-2 rounded infocard">
     <h2 class="mb-4">{{course.name}}</h2>
     <!-- Contributors -->
     <div>
@@ -20,9 +21,28 @@
   <a class="nav-link" href="#">Curriculum</a>
   <a class="nav-link" href="#">Discussion</a>
   <a class="nav-link" href="#">Lectures</a>
-  <a class="nav-link" href="#">New Material</a>
+  <a class="nav-link" href="#">New Topic</a>
 </nav>
 
 <!-- Topics -->
-
+<!-- TODO For Loop -->
+<br />
+<div class="card border-secondary mb-3 mx-auto rounded topiccard">
+  <div class="card-header bg-secondary mb-2">
+    <h3 class="mb-4 topictitle">{{topic.title}}</h3>
+    <!-- #materials -->
+    <div style="display: inline; float: right;">
+      {{topic.materials.length}} Materials
+    </div>
+  </div>
+  <div class="card-body">
+    <!-- Description -->
+    <div style="float: left;">
+      {{topic.description}}
+    </div>
+    <!-- Tags -->
+    <div style="display: inline; float: right;">
+      {{topic.tags}}
+    </div>
+  </div>
 </div>
