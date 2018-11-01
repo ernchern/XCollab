@@ -12,5 +12,9 @@ export class ExerciseService {
     return of(EXERCISES);
   }
 
+  getExercise(id): Observable<Exercise> {
+    return of(EXERCISES.find(exercise => exercise.id === id));
+  }
+
   constructor() { }
 }

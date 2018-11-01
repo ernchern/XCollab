@@ -1,23 +1,8 @@
-.document_open {
-  display: inline;
-  width: 50%;
-  float: left;
-}
-
-.buttons {
-  display: inline;
-  float: right;
-}
-
 .tags {
-  width: 90%;
   color: navy;
 }
 
-.discussion {
-  display: inline;
-  width: 50%;
-  margin: 5px;
-  float: right;
-  height: 80%;
+:host {
+    margin-top: 1em;
+    display: block;
 }
