@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ExerciseService } from '../exercise.service'
+import { Exercise } from '../exercise'
 
 @Component({
   selector: 'app-search',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  exercises: Exercise[];
+
+  constructor(private exerciseService: ExerciseService) { }
+
+  getExercises(): void {
+    this.exerciseService.getExercises().subscribe(exercises => this.exercises = exercises);
+  }
 
   ngOnInit() {
+    this.getExercises();
   }
 
 }

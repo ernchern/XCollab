@@ -1,21 +1,31 @@
-<div style="height: 20%; padding: 5% 25% 5% 25%;">
-  <input type="text" class="form-control" placeholder="Search..."/>
-</div>
-<div style="float: center;">
-  <div class="card mx-auto rounded" style="width: 60%;">
-    <div class="card-header bg-secondary">
-      <div style="float: left;">
-        #socialcomputing #crowdsourcing #peerproduction
-      </div>
-      <div style="float: right; display: inline;">
-        By Juho Kim
-      </div>
+<div class="container">
+    <div class="form-group row">
+        <input type="text" class="form-control" placeholder="Search...">
     </div>
-    <div class="card-body" style="max-height: 300px;">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in turpis et nunc imperdiet molestie at ut ante. Donec a est at lacus feugiat convallis vel sed dolor. Morbi vulputate fringilla felis in malesuada. Fusce dapibus augue urna, nec sagittis urna congue id. Nullam volutpat ultrices diam quis faucibus. Suspendisse erat nisl, commodo at fermentum ut, lobortis et mauris. Sed id odio vel justo pretium congue. Sed non lacus turpis. Ut accumsan pharetra vulputate. Suspendisse bibendum sed nisi sed vehicula. Fusce arcu magna, posuere tempor justo vitae, tincidunt elementum purus. Aliquam erat volutpat. Pellentesque mattis tincidunt libero sed dapibus.
-
-      Nulla facilisi. Nulla mollis tempus odio, eu aliquam felis auctor id. Nulla quis laoreet erat. Nullam molestie posuere consequat. Sed eget augue a leo hendrerit semper. Fusce pretium velit id mauris interdum vestibulum. Sed ut augue quis lectus mattis egestas. Duis consequat iaculis erat, at venenatis dui facilisis nec. Phasellus ultrices tellus enim, quis vehicula diam pellentesque in. Duis malesuada dui vitae arcu bibendum interdum. Mauris porttitor molestie neque, non bibendum risus pharetra eget.
+    <div class="row">
+        <div class="column">
+            <ul style="list-style-type:none">
+            <li *ngFor="let exercise of exercises">
+                <div class="card mx-auto rounded">
+                    <div class="card-header bg-secondary">
+                        <a routerLink="/discussion/{{exercise.id}}">
+                        <div style="float: left;">
+                            <h3>{{exercise.title}}</h3>
+                        </div>
+                        </a>
+                        <div style="float: right; display: inline;">
+                            <!-- TODO link to user page -->
+                            <p>{{exercise.source}}</p>
+                        </div>
+                    </div>
+                    <div class="card-body" style="max-height: 300px;">
+                        <a routerLink="/discussion/{{exercise.id}}">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in turpis et nunc imperdiet molestie at ut ante. Donec a est at lacus feugiat convallis vel sed dolor. Morbi vulputate fringilla felis in malesuada. Fusce dapibus augue urna, nec sagittis urna congue id. Nullam volutpat ultrices diam quis faucibus. Suspendisse erat nisl, commodo at fermentum ut, lobortis et mauris. Sed id odio vel justo pretium congue. Sed non lacus turpis. Ut accumsan pharetra vulputate. Suspendisse bibendum sed nisi sed vehicula. Fusce arcu magna, posuere tempor justo vitae, tincidunt elementum purus. Aliquam erat volutpat. Pellentesque mattis tincidunt libero sed dapibus.</p>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            </ul>
+        </div>
     </div>
-  </div>
-  <br />
 </div>
