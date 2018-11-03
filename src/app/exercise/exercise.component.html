@@ -18,7 +18,7 @@
                         </div>
                         <div class="p-2 flex-fill bd-highlight">
                             <div class="buttons">
-                                <button (click)="showDiscussion=!showDiscussion" class="btn float-right">Discussion</button>
+                                <button (click)="showDiscussion=!showDiscussion" class="btn float-right">Discussions</button>
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
             <div class="card primary mx-auto rounded discussion" [hidden]="!showDiscussion">
                 <div class="card-body">
                     <div class="list-group">
-                        <a *ngFor="let discussion of discussions" class="discussion list-group-item list-group-item-action">
+                        <a *ngFor="let discussion of discussions" class="discussion list-group-item list-group-item-action" routerLink="discussion/{{discussion.id}}">
                             <p>{{discussion.title}}, concerned: {{discussion.concern.length}}<button type="button" class="btn btn-danger float-right">unsolved</button></p>
                         </a>
                     </div>

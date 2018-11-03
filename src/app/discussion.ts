@@ -1,4 +1,5 @@
 export class Discussion {
+  id: string;
   title: string;
   body: string;
   concern: string[]; // TODO USER

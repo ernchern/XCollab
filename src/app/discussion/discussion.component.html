@@ -3,7 +3,7 @@
         <div class="col">
             <!-- Top bar -->
             <div class="form-group">
-                <button (click)="goBack()" class="btn float-left">Go back to search</button>
+                <button (click)="goBack()" class="btn float-left">Go back to discussions</button>
             </div>
         </div>
     </div>
@@ -30,21 +30,24 @@
                 </div>
             </div>
         </div>
-        <div class="col">
-            <!-- Discussion -->
-            <div class="card primary mx-auto rounded discussion" [hidden]="!showDiscussion">
-                <div class="card-body">
-                    <div class="list-group">
-                        <a *ngFor="let discussion of exercise.discussions" class="discussion list-group-item list-group-item-action">
-                            <p>{{discussion.title}}, concerned: {{discussion.concern.length}}<button type="button" class="btn btn-danger float-right">unsolved</button></p>
-                        </a>
-                    </div>
-                    <br>
-                    <form class="form-inline input-group">
-                        <textarea class="form-control custom-control" rows="3"></textarea>
-                        <button type="button" class="btn btn-primary input-group-addon">Submit</button>
-                    </form>
+    <div class="col">
+        <!-- Discussion -->
+        <div class="card mx-auto rounded discussion" [hidden]="!showDiscussion">
+            <div class="card-body">
+                <div class="list-group">
+                    <a class="discussion list-group-item">
+                        <h3>{{discussion.title}}, concerned: {{discussion.concern.length}}<button type="button" class="btn btn-danger float-right">unsolved</button></h3>
+                        <p>{{discussion.body}}</p>
+                    </a>
+                    <a *ngFor="let comment of discussion.comments" class="list-group-item list-group-item-action">
+                        <p>{{comment}}</p>
+                    </a>
                 </div>
+                <br>
+                <form class="form-inline input-group">
+                    <textarea class="form-control custom-control" rows="3"></textarea>
+                    <button type="button" class="btn btn-primary input-group-addon">Submit</button>
+                </form>
             </div>
         </div>
     </div>

@@ -37,6 +37,17 @@ export class ExerciseService {
     );
   }
 
+  getDiscussion(exercise_id, discussion_id): Observable<Discussion> {
+    const exercise = this.db.collection<Exercise>('exercises').doc<Exercise>(exercise_id);
+    return exercise.collection<Discussion>('discussions').doc<Discussion>(discussion_id).snapshotChanges().pipe(
+      map(a => {
+        const data = a.payload.data() as Discussion;
+        const id = a.payload.id;
+        return { id, ...data }
+      })
+    );
+  }
+
   constructor(private db: AngularFirestore) {
     this.exercises = this.getExercises()
   }

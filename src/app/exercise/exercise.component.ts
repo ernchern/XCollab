@@ -23,8 +23,7 @@ export class ExerciseComponent implements OnInit {
   ) { }
 
   getExercise(): void {
-    // const id = +this.route.snapshot.paramMap.get('id');
-    const id = 'gm5Ky39xI58ZhnbZLxlV'
+    const id = this.route.snapshot.paramMap.get('exercise_id');
     this.exerciseService.getExercise(id).subscribe(exercise => this.exercise = exercise);
     this.exerciseService.getDiscussions(id).subscribe(discussions => this.discussions = discussions);
   }
