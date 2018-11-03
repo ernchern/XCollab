@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { EXERCISES } from './mock-exercises';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +7,7 @@ import { EXERCISES } from './mock-exercises';
 })
 export class AppComponent {
   title = 'CourseCollab';
-  exercises = EXERCISES;
+
+  constructor() {
+  }
 }

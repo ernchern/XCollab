@@ -1,20 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Exercise } from './exercise';
-import { EXERCISES } from './mock-exercises';
+
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExerciseService {
+  exercises: Observable<any[]>;
 
-  getExercises(): Observable<Exercise[]> {
-    return of(EXERCISES);
+  // getExercises(): Observable<any[]> {
+  //   return of(this.exercises);
+  // }
+
+  // getExercise(id): Observable<Exercise> {
+  //   return of(this.exercises.find(exercise => exercise.id === id));
+  // }
+
+  constructor(public db: AngularFirestore) {
+    this.exercises = this.db.collection('exercises').valueChanges();
   }
-
-  getExercise(id): Observable<Exercise> {
-    return of(EXERCISES.find(exercise => exercise.id === id));
-  }
-
-  constructor() { }
 }

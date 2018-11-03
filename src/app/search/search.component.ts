@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
   constructor(private exerciseService: ExerciseService) { }
 
   getExercises(): void {
-    this.exerciseService.getExercises().subscribe(exercises => this.exercises = exercises);
+    this.exerciseService.exercises.subscribe(exercises => this.exercises = exercises);
   }
 
   ngOnInit() {
