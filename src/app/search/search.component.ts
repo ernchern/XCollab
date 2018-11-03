@@ -11,7 +11,8 @@ export class SearchComponent implements OnInit {
 
   exercises: Exercise[];
 
-  constructor(private exerciseService: ExerciseService) { }
+  constructor(private exerciseService: ExerciseService) {
+  }
 
   getExercises(): void {
     this.exerciseService.exercises.subscribe(exercises => this.exercises = exercises);
