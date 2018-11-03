@@ -19,12 +19,8 @@ export class ExerciseComponent implements OnInit {
     author: '',
     title: '',
     body: '',
-    id: '',
-    locked: [],
-    solved: false,
-    comments: [],
     summary: '',
-    concern: [],
+    solved: false,
   }
 
   constructor(

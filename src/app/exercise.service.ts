@@ -3,10 +3,8 @@ import { Exercise } from './exercise';
 import { Discussion } from './discussion';
 import { Comment } from './comment';
 
-import { AppComponent } from './app.component'
-
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -67,7 +65,7 @@ export class ExerciseService {
 
   addDiscussion(exercise_id, discussion) {
     const exercise = this.db.collection<Exercise>('exercises').doc<Exercise>(exercise_id);
-    discussion.id = this.db.createId();
+    // discussion.id = this.db.createId();
     discussion.author = "TODO"
     exercise.collection<Discussion>('discussions').add(discussion);
   }
@@ -75,7 +73,7 @@ export class ExerciseService {
   addComment(exercise_id, discussion_id, comment) {
     const exercise = this.db.collection<Exercise>('exercises').doc<Exercise>(exercise_id);
     const discussion = exercise.collection<Discussion>('discussions').doc<Discussion>(discussion_id);
-    comment.id = this.db.createId();
+    // comment.id = this.db.createId();
     comment.author = "TODO"
     discussion.collection<string>('comments').add(comment);
   }

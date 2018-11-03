@@ -5,7 +5,6 @@ import { Exercise } from '../exercise';
 import { Comment } from '../comment';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
- 
 
 @Component({
   selector: 'app-discussion',
@@ -17,7 +16,6 @@ export class DiscussionComponent implements OnInit {
   exercise: Exercise;
   comments: Comment[];
   comment = {
-    id: '',
     body: '',
     author: '',
     concerned: [],
