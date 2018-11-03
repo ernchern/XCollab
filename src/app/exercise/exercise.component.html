@@ -35,12 +35,13 @@
             <div class="card primary mx-auto rounded discussion" [hidden]="!showDiscussion">
                 <div class="card-body">
                     <div class="list-group">
-                        <a *ngFor="let discussion of discussions" class="discussion list-group-item list-group-item-action" routerLink="discussion/{{discussion?.id}}">
-                            <p>{{discussion?.title}}, concerned: {{discussion?.concern?.length}}<button type="button" class="btn btn-danger float-right">unsolved</button></p>
-                        </a>
+                        <div *ngFor="let discussion of discussions" class="discussion list-group-item list-group-item-action"style="z-index=-1">
+                            {{discussion?.title}} <span class="blockquote-footer author"> by {{exerciseService.userName}} </span> <button type="button" class="btn btn-discussion btn-outline-danger float-right">unsolved</button> <button type="button" ng-class="exerciseService.isConcerned(exerciseId(), discussion.id)'btn-outline-info':'btn-info'" (click)="exerciseService.toggleConcern(exerciseId(), discussion)" class="btn btn-discussion float-right">✋{{discussion.concerned}}</button>
+                            <a routerLink="discussion/{{discussion?.id}}"><span class="filler"></span></a>
+                        </div>
                     </div>
                     <br>
-                    <form class="form" (ngSubmit)="saveDiscussion()" #discussionForm="ngForm">
+                    <form class="form" (ngSubmit)="saveDiscussion(); discussionForm.reset()" #discussionForm="ngForm">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Title</span>
@@ -54,7 +55,7 @@
 
                             <textarea class="form-control custom-control" required rows="3" [(ngModel)]="discussion.body" placeholder="Body" aria-label="Body" name="body"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary input-group-addon float-right" onsubmit="saveDiscussion()" [disabled]="!discussionForm.form.valid">Submit</button>
+                        <button type="submit" class="btn btn-primary input-group-addon float-right" [disabled]="!discussionForm.form.valid">Submit</button>
                     </form>
                 </div>
             </div>

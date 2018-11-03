@@ -20,6 +20,7 @@ export class ExerciseComponent implements OnInit {
     title: '',
     body: '',
     summary: '',
+    concerned: 0,
     solved: false,
   }
 
@@ -28,6 +29,10 @@ export class ExerciseComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location
   ) { }
+
+  exerciseId(): string {
+    return this.route.snapshot.paramMap.get('exercise_id');
+  }
 
   getData(): void {
     var id = this.route.snapshot.paramMap.get('exercise_id');
@@ -46,5 +51,9 @@ export class ExerciseComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  getUserName(uid): string {
+    return this.exerciseService.user.name;
   }
 }

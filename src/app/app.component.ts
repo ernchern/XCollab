@@ -15,11 +15,10 @@ export class AppComponent {
   }
   login() {
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
-    // this.afAuth.user.subscribe(authData => this.currentUser = authData.uid);
   }
   logout() {
     this.afAuth.auth.signOut();
-    // this.currentUser = '';
+    this.currentUser = '';
   }
   getUser() {
     return this.currentUser;
