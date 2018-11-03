@@ -1,31 +1,35 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule }    from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { DiscussionComponent } from './discussion/discussion.component';
 import { SearchComponent } from './search/search.component';
+import { DiscussionComponent } from './discussion/discussion.component';
+import { ExerciseComponent } from './exercise/exercise.component';
 
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
-import { ExerciseComponent } from './exercise/exercise.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DiscussionComponent,
     SearchComponent,
     ExerciseComponent,
+    DiscussionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

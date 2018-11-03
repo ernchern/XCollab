@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Exercise } from './exercise';
+import { Discussion } from './discussion';
 
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
@@ -11,7 +12,7 @@ import { map } from 'rxjs/operators';
 export class ExerciseService {
   exercises: Observable<Exercise[]>;
 
-  getExercises(): Observable<any[]> {
+  getExercises(): Observable<Exercise[]> {
     return this.db.collection<Exercise>('exercises').snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Exercise;
@@ -22,11 +23,21 @@ export class ExerciseService {
   }
 
   getExercise(id): Observable<Exercise> {
-    // return this.db.collection('exercises', ref => ref.where('id', '==', id)).valueChanges()[0];
-    return this.db.doc<Exercise>('exercises/'+id).valueChanges();
+    return this.db.collection<Exercise>('exercises').doc<Exercise>(id).valueChanges();
   }
 
-  constructor(public db: AngularFirestore) {
+  getDiscussions(id): Observable<Discussion[]> {
+    const exercise = this.db.collection<Exercise>('exercises').doc<Exercise>(id);
+    return exercise.collection<Discussion>('discussions').snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Discussion;
+        const id = a.payload.doc.id;
+        return { id, ...data }
+      }))
+    );
+  }
+
+  constructor(private db: AngularFirestore) {
     this.exercises = this.getExercises()
   }
 }
