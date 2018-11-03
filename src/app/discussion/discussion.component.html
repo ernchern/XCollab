@@ -14,7 +14,7 @@
                 <div class="card-header bg-secondary">
                     <div class="d-flex flex-row bd-highlight mb-3">
                         <div class="p-2 flex-fill bd-highlight">
-                            <p>{{exercise.title}}, {{exercise.tags}}</p>
+                            <p>{{exercise?.title}}, {{exercise?.tags}}</p>
                         </div>
                         <div class="p-2 flex-fill bd-highlight">
                             <div class="buttons">
@@ -36,18 +36,23 @@
             <div class="card-body">
                 <div class="list-group">
                     <a class="discussion list-group-item">
-                        <h3>{{discussion.title}}, concerned: {{discussion.concern.length}}<button type="button" class="btn btn-danger float-right">unsolved</button></h3>
-                        <p>{{discussion.body}}</p>
+                        <h3>{{discussion?.title}}, <button type="button" class="btn btn-danger float-right">unsolved</button></h3>
+                        <p>{{discussion?.body}}</p>
                     </a>
-                    <a *ngFor="let comment of discussion.comments" class="list-group-item list-group-item-action">
-                        <p>{{comment}}</p>
-                    </a>
+                        <a *ngFor="let comment of comments" class="list-group-item list-group-item-action">
+                            <p>{{comment.body}} by {{comment.author}}</p>
+                        </a>
                 </div>
                 <br>
-                <form class="form-inline input-group">
-                    <textarea class="form-control custom-control" rows="3"></textarea>
-                    <button type="button" class="btn btn-primary input-group-addon">Submit</button>
-                </form>
+                    <form class="form" (ngSubmit)="saveComment(); commentForm.reset()" #commentForm="ngForm">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Comment</span>
+                            </div>
+                            <textarea class="form-control custom-control" required rows="3" [(ngModel)]="comment.body" placeholder="Body" aria-label="Body" name="body"></textarea>
+                            <button type="submit" class="btn btn-primary input-group-addon float-right" [disabled]="!commentForm.form.valid">Submit</button>
+                        </div>
+                    </form>
             </div>
         </div>
     </div>

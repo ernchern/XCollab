@@ -1,11 +1,23 @@
 export class Discussion {
   id: string;
+  author: string; // TODO USER
   title: string;
   body: string;
-  concern: string[]; // TODO USER
   summary: string; // TODO SUMMARY
-  author: string; // TODO USER
+  concern: string[]; // TODO USER
   locked: boolean;
-  comments: string[]; // TODO comment
   solved: boolean;
+
+  constructor(
+    author: string; // TODO USER
+    title: string;
+    body: string;
+  ) {
+    this.id = '';
+    this.locked = [author];
+    this.solved = false;
+    this.comments = [];
+    this.summary = '';
+    this.concern = [];
+  }
 }

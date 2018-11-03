@@ -15,6 +15,17 @@ import { Discussion } from '../discussion';
 export class ExerciseComponent implements OnInit {
   exercise: Exercise;
   discussions: Discussion[];
+  discussion = {
+    author: '',
+    title: '',
+    body: '',
+    id: '',
+    locked: [],
+    solved: false,
+    comments: [],
+    summary: '',
+    concern: [],
+  }
 
   constructor(
     private exerciseService: ExerciseService,
@@ -22,14 +33,19 @@ export class ExerciseComponent implements OnInit {
     private location: Location
   ) { }
 
-  getExercise(): void {
-    const id = this.route.snapshot.paramMap.get('exercise_id');
-    this.exerciseService.getExercise(id).subscribe(exercise => this.exercise = exercise);
-    this.exerciseService.getDiscussions(id).subscribe(discussions => this.discussions = discussions);
+  getData(): void {
+    var id = this.route.snapshot.paramMap.get('exercise_id');
+    this.exerciseService.getExercise(id).subscribe(d => this.exercise = d);
+    this.exerciseService.getDiscussions(id).subscribe(d => this.discussions = d);
+  }
+
+  saveDiscussion(): void {
+    var id = this.route.snapshot.paramMap.get('exercise_id');
+    this.exerciseService.addDiscussion(id, this.discussion)
   }
 
   ngOnInit() {
-    this.getExercise();
+    this.getData();
   }
 
   goBack(): void {
