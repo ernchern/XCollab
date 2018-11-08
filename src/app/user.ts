@@ -8,10 +8,12 @@ export class User {
   constructor(
     uid:string
   ) {
-    var choices = ['banana', 'cherry', 'apple', 'peach', 'kiwi', 'pineapple', 'pear', 'avocado']
-    var index = Math.floor(Math.random() * choices.length);
+    var fruits = ['banana', 'cherry', 'apple', 'peach', 'kiwi', 'pineapple', 'pear', 'avocado', 'berry', 'coconut', 'melon', 'mango', 'pumpkin', 'papaya', 'tangerine', 'apricot', 'fig', 'plum']
+    var f_ind = Math.floor(Math.random() * fruits.length);
+    var colors = ['orange', 'blue', 'purple', 'green', 'yellow', 'pink', 'black', 'white']
+    var c_ind = Math.floor(Math.random() * colors.length);
     this.uid = uid;
     this.signature = '';
-    this.name = choices[index];
+    this.name = colors[c_ind] + " " + fruits[f_ind];
   }
 }
