@@ -14,13 +14,15 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
+import { DiscussionPreviewComponent } from './discussion-preview/discussion-preview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
     ExerciseComponent,
-    DiscussionComponent
+    DiscussionComponent,
+    DiscussionPreviewComponent
   ],
   imports: [
     BrowserModule,

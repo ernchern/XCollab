@@ -23,6 +23,7 @@ export class ExerciseComponent implements OnInit {
     concerned: [],
     solved: false,
   }
+  users = {}
 
   constructor(
     private exerciseService: ExerciseService,
@@ -53,7 +54,8 @@ export class ExerciseComponent implements OnInit {
     this.location.back();
   }
 
-  getUserName(uid): string {
-    return this.exerciseService.user.name;
+  // TODO
+  getUserName(discussion) {
+    this.exerciseService.getUser(discussion.uid).subscribe(u => discussion.user = u);
   }
 }

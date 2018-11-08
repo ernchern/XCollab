@@ -59,6 +59,11 @@ export class ExerciseService {
     );
   }
 
+  getUser(user_uid): Observable<User> {
+    const user = this.db.collection<User>('users').doc<User>(user_uid);
+    return user.valueChanges();
+  }
+
   getComments(exercise_id, discussion_id): Observable<Comment[]> {
     const exercise = this.db.collection<Exercise>('exercises').doc<Exercise>(exercise_id);
     const discussion = exercise.collection<Discussion>('discussions').doc<Discussion>(discussion_id);
@@ -86,7 +91,7 @@ export class ExerciseService {
     discussion.collection<string>('comments').add(comment);
   }
 
-  getUser(uid) {
+  initUser(uid) {
     this.userUID = uid;
     var sub = this.db.collection<User>('users', ref => ref.where('uid', '==', uid)).snapshotChanges().pipe(
       map(actions => actions.map(a => {
@@ -131,6 +136,6 @@ export class ExerciseService {
 
   constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) {
     this.exercises = this.getExercises()
-    this.afAuth.user.subscribe(authData => this.getUser(authData.uid));
+    this.afAuth.user.subscribe(authData => this.initUser(authData.uid));
   }
 }

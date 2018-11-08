@@ -36,7 +36,7 @@
                 <div class="card-body">
                     <div class="list-group">
                         <div *ngFor="let discussion of discussions" class="discussion list-group-item list-group-item-action"style="z-index=-1">
-                            {{discussion?.title}} <span class="blockquote-footer author"> by {{exerciseService.userName}} </span> <button type="button" class="btn btn-discussion btn-outline-danger float-right">unsolved</button> <button type="button" ng-class="exerciseService.isConcerned(exerciseId(), discussion.id)'btn-outline-info':'btn-info'" (click)="exerciseService.toggleConcern(exerciseId(), discussion)" class="btn btn-discussion float-right">✋{{discussion.concerned.length}}</button>
+                            {{discussion?.title}} <span class="blockquote-footer author"> by </span> <button type="button" class="btn btn-discussion btn-outline-danger float-right">unsolved</button> <button type="button" ng-class="exerciseService.isConcerned(exerciseId(), discussion.id)'btn-outline-info':'btn-info'" (click)="exerciseService.toggleConcern(exerciseId(), discussion)" class="btn btn-discussion float-right">✋{{discussion.concerned.length}}</button>
                             <a routerLink="discussion/{{discussion?.id}}"><span class="filler"></span></a>
                         </div>
                     </div>
