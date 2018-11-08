@@ -15,6 +15,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { DiscussionPreviewComponent } from './discussion-preview/discussion-preview.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DiscussionPreviewComponent } from './discussion-preview/discussion-prev
     SearchComponent,
     ExerciseComponent,
     DiscussionComponent,
-    DiscussionPreviewComponent
+    DiscussionPreviewComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
