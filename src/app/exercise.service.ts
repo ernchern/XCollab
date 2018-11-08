@@ -59,8 +59,8 @@ export class ExerciseService {
     );
   }
 
-  getUser(user_uid): Observable<User> {
-    const user = this.db.collection<User>('users').doc<User>(user_uid);
+  getUser(user_uid): Observable<User[]> {
+    const user = this.db.collection<User>('users', ref => ref.where('uid', '==', user_uid))
     return user.valueChanges();
   }
 
