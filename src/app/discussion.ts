@@ -3,7 +3,7 @@ export class Discussion {
   title: string;
   body: string;
   summary: string; // TODO SUMMARY
-  concerned: number;
+  concerned: string[];
   solved: boolean;
 
   constructor(
@@ -13,6 +13,6 @@ export class Discussion {
   ) {
     this.solved = false;
     this.summary = '';
-    this.concerned = 0;
+    this.concerned = [];
   }
 }

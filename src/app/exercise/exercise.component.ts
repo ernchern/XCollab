@@ -20,7 +20,7 @@ export class ExerciseComponent implements OnInit {
     title: '',
     body: '',
     summary: '',
-    concerned: 0,
+    concerned: [],
     solved: false,
   }
 
@@ -37,7 +37,7 @@ export class ExerciseComponent implements OnInit {
   getData(): void {
     var id = this.route.snapshot.paramMap.get('exercise_id');
     this.exerciseService.getExercise(id).subscribe(d => this.exercise = d);
-    this.exerciseService.getDiscussions(id).subscribe(d => this.discussions = d);
+    this.exerciseService.getDiscussions(id).subscribe(d => this.discussions = d.sort((a, b) => b.concerned.length - a.concerned.length));
   }
 
   saveDiscussion(): void {

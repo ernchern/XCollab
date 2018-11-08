@@ -5,6 +5,7 @@ import { Comment } from './comment';
 import { User } from './user';
 
 import { AngularFirestore } from '@angular/fire/firestore';
+import { firestore } from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -37,7 +38,7 @@ export class ExerciseService {
 
   getDiscussions(id): Observable<Discussion[]> {
     const exercise = this.db.collection<Exercise>('exercises').doc<Exercise>(id);
-    return exercise.collection<Discussion>('discussions', ref => ref.orderBy('concerned', "desc")).snapshotChanges().pipe(
+    return exercise.collection<Discussion>('discussions').snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Discussion;
         const id = a.payload.doc.id;
@@ -61,7 +62,7 @@ export class ExerciseService {
   getComments(exercise_id, discussion_id): Observable<Comment[]> {
     const exercise = this.db.collection<Exercise>('exercises').doc<Exercise>(exercise_id);
     const discussion = exercise.collection<Discussion>('discussions').doc<Discussion>(discussion_id);
-    const comments = discussion.collection<Comment>('comments')
+    const comments = discussion.collection<Comment>('comments', ref => ref.orderBy('timestamp'))
     return comments.snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Comment;
@@ -81,12 +82,12 @@ export class ExerciseService {
     const exercise = this.db.collection<Exercise>('exercises').doc<Exercise>(exercise_id);
     const discussion = exercise.collection<Discussion>('discussions').doc<Discussion>(discussion_id);
     comment.author = "users/" + this.userUID;
+    comment.timestamp = firestore.FieldValue.serverTimestamp();
     discussion.collection<string>('comments').add(comment);
   }
 
   getUser(uid) {
     this.userUID = uid;
-    // this.db.collection<User>('users', ref => ref.where('uid', '==', uid)).valueChanges().subscribe(d => this.checkUser(d[0], uid));
     var sub = this.db.collection<User>('users', ref => ref.where('uid', '==', uid)).snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as User
@@ -115,17 +116,17 @@ export class ExerciseService {
 
   toggleConcern(exercise_id, discussion) {
     const path = 'exercises/'+exercise_id+'/discussions/'+discussion.id;
-    if (this.isConcerned(exercise_id, discussion.id)) {
-      this.db.collection('users').doc(this.userID).collection('concerned').doc(path).delete();
-      this.db.doc(path).update({'concerned': discussion.concerned - 1})
-    } else {
-      this.db.collection('users').doc(this.userID).collection('concerned').add({path:path, placeholder:1});
-      this.db.doc(path).update({'concerned': discussion.concerned + 1})
+    if (!this.isConcerned(discussion)) {
+      console.log('is not concerned')
+      discussion.concerned.push(this.userUID);
+      console.log(discussion.concerned)
+      this.db.doc(path).update({concerned: discussion.concerned})
     }
   }
 
-  isConcerned(exercise_id, discussion_id): boolean {
-    return false
+  isConcerned(discussion): boolean {
+    console.log(discussion)
+    return discussion.concerned.indexOf(this.userUID) > -1;
   }
 
   constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) {
