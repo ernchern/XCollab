@@ -59,6 +59,7 @@ export class ExerciseService {
     );
   }
 
+  // Returns an array, get the first element.
   getUser(user_uid): Observable<User[]> {
     const user = this.db.collection<User>('users', ref => ref.where('uid', '==', user_uid))
     return user.valueChanges();
@@ -79,14 +80,14 @@ export class ExerciseService {
 
   addDiscussion(exercise_id, discussion) {
     const exercise = this.db.collection<Exercise>('exercises').doc<Exercise>(exercise_id);
-    discussion.author = "users/" + this.userUID;
+    discussion.author = this.userUID;
     exercise.collection<Discussion>('discussions').add(discussion);
   }
 
   addComment(exercise_id, discussion_id, comment) {
     const exercise = this.db.collection<Exercise>('exercises').doc<Exercise>(exercise_id);
     const discussion = exercise.collection<Discussion>('discussions').doc<Discussion>(discussion_id);
-    comment.author = "users/" + this.userUID;
+    comment.author = this.userUID;
     comment.timestamp = firestore.FieldValue.serverTimestamp();
     discussion.collection<string>('comments').add(comment);
   }

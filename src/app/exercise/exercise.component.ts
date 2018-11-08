@@ -23,7 +23,6 @@ export class ExerciseComponent implements OnInit {
     concerned: [],
     solved: false,
   }
-  users = {}
 
   constructor(
     private exerciseService: ExerciseService,
@@ -52,10 +51,5 @@ export class ExerciseComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
-  }
-
-  // TODO
-  getUserName(discussion) {
-    this.exerciseService.getUser(discussion.uid).subscribe(u => discussion.user = u);
   }
 }
