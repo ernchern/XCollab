@@ -121,17 +121,18 @@ export class ExerciseService {
   }
 
   toggleConcern(exercise_id, discussion) {
-    const path = 'exercises/'+exercise_id+'/discussions/'+discussion.id;
+    console.log('toggle', discussion)
     if (!this.isConcerned(discussion)) {
-      console.log('is not concerned')
       discussion.concerned.push(this.userUID);
-      console.log(discussion.concerned)
+      const path = 'exercises/'+exercise_id+'/discussions/'+discussion.id;
+      console.log(path)
+      console.log(discussion)
       this.db.doc(path).update({concerned: discussion.concerned})
     }
   }
 
   isConcerned(discussion): boolean {
-    console.log(discussion)
+    console.log('isConcerned', discussion)
     return discussion.concerned.indexOf(this.userUID) > -1;
   }
 

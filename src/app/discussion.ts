@@ -7,7 +7,6 @@ export class Discussion {
   summary: string; // TODO SUMMARY
   concerned: string[];
   solved: boolean;
-  user: User;
 
   constructor(
     author: string, // TODO USER
