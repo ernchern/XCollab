@@ -47,7 +47,7 @@
                     <form class="form" (ngSubmit)="saveComment(); commentForm.reset()" #commentForm="ngForm">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Comment</span>
+                                <span class="input-group-text">Comment (+2)</span>
                             </div>
                             <textarea class="form-control custom-control" required rows="3" [(ngModel)]="comment.body" placeholder="Body" aria-label="Body" name="body"></textarea>
                             <button type="submit" class="btn btn-primary input-group-addon float-right" [disabled]="!commentForm.form.valid">Submit</button>

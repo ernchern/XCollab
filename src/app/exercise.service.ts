@@ -120,6 +120,13 @@ export class ExerciseService {
     }
   }
 
+  modifyCoins(number) : void {
+    console.log("Prev Coins: " + this.user[0].coins);
+    const reference = this.db.doc('users/'+this.userID);
+    reference.update({coins: this.user[0].coins += number});
+    console.log("Curr Coins: " + this.user[0].coins);
+  }
+
   toggleConcern(exercise_id, discussion) {
     console.log('toggle', discussion)
     if (!this.isConcerned(discussion)) {
@@ -129,6 +136,16 @@ export class ExerciseService {
       console.log(discussion)
       this.db.doc(path).update({concerned: discussion.concerned})
     }
+  }
+
+  addUnlockedExercise(exercise_id): void {
+    const reference = this.db.doc('users/'+this.userID);
+    const prev_unlocked = this.user[0].unlocked;
+    reference.update({unlocked: prev_unlocked.concat([exercise_id])});
+  }
+
+  addUnlockedDiscussion(discussion_id): void {
+    this.addUnlockedExercise(discussion_id);
   }
 
   isConcerned(discussion): boolean {

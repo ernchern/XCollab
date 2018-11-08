@@ -14,6 +14,7 @@ import { Location } from '@angular/common';
 export class DiscussionComponent implements OnInit {
   discussion: Discussion;
   exercise: Exercise;
+  showDiscussion: Boolean = true;
   comments: Comment[];
   comment = {
     body: '',
@@ -44,10 +45,15 @@ export class DiscussionComponent implements OnInit {
   saveComment(): void {
     var exercise_id = this.route.snapshot.paramMap.get('exercise_id');
     var discussion_id = this.route.snapshot.paramMap.get('discussion_id');
-    this.exerciseService.addComment(exercise_id, discussion_id, this.comment)
+    this.exerciseService.addComment(exercise_id, discussion_id, this.comment);
+    this.exerciseService.modifyCoins(2);
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  unlockComments(): void {
+    console.log("Test");
   }
 }
