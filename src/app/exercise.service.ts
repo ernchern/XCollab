@@ -143,7 +143,8 @@ export class ExerciseService {
         coins: 4,
         unlocked: [],
         concerned: [],
-        mastery: []
+        mastery: [],
+        id: undefined
       });
     } else {
       this.user = user;
