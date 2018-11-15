@@ -1,3 +1,35 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">We value constructive discussion!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <style>
+	.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 200px;
+	}
+	</style>
+	<div class="column" style="background-color:#ffcccc;text-align: center">
+	This sounds complicated.
+	</div>
+	<div class="column" style="background-color:#b3ffcc;text-align: center">
+	If y~N(0.1+b,0.1+b), why do I need to consider y as a Normal random variable, if b only takes discrete values? Shouldn't it be a Bernoulli random variable?
+	</div>
+	<h4 style="text-align: center">Which one do you think would be more helpful?</h4>
+	<p style="text-align: center">In our community, we believe that every student is capable of contributing to everyone's learning experience with constructive discussion.</p>
+	<p style="text-align: center">Could you take a moment to improve your input?</p>
+	
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Review</button>
+  </div>
+</ng-template>
+
 <div class="container mt-4">
     <div class="row mb-4">
     </div>
@@ -34,7 +66,7 @@
                         </div>
                     </div>
                     <br>
-                    <form class="form" (ngSubmit)="saveDiscussion(); discussionForm.reset()" #discussionForm="ngForm">
+                    <form class="form" (ngSubmit)="checkLength()&&discussionForm.reset()" #discussionForm="ngForm">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Title</span>
@@ -48,7 +80,7 @@
 
                             <textarea class="form-control custom-control" required rows="3" [(ngModel)]="discussion.body" placeholder="Body" aria-label="Body" name="body"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary input-group-addon float-right" [disabled]="!discussionForm.form.valid">Submit (+2)</button>
+                        <button type="submit" class="btn btn-primary input-group-addon float-right" [disabled]="!discussionForm.form.valid" (click)="checkLength()? saveDiscussion() : open(content)">Submit (+2)</button>
                     </form>
                 </div>
             </div>
