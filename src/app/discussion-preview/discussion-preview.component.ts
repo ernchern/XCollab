@@ -13,9 +13,11 @@ import { User } from '../user';
 })
 export class DiscussionPreviewComponent implements OnInit {
   @Input('discussion') discussion: Discussion;
+  @Input('exercise') exercise: Exercise;
   exercise_id: string;
   commentsUnlocked: Boolean = false;
   user: User;
+  mastery: number;
 
   constructor(
     private exerciseService: ExerciseService,
@@ -26,7 +28,9 @@ export class DiscussionPreviewComponent implements OnInit {
 
   getData(): void {
     const user_uid = this.discussion.author;
-    this.exerciseService.getUser(user_uid).subscribe(user => {this.user = user[0];});
+    this.exerciseService.getUser(user_uid).subscribe((user) => {
+      this.user = user[0];
+      this.mastery = this.exerciseService.getMastery(this.exercise, this.user)});
   }
 
   unlockComments() {

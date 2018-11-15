@@ -92,15 +92,27 @@ export class ExerciseService {
     discussion.collection<string>('comments').add(comment);
   }
 
-  updateMastery(tag, action) {
-    var masteryIndex = this.user[0].mastery.findIndex(m => m.tag == 'ml')
+  updateMastery(tag: string, action: string, masteryUser?: User) {
+    if (!masteryUser) {
+      masteryUser = this.user[0]
+    }
+    var masteryIndex = masteryUser.mastery.findIndex(m => m.tag == 'ml')
     if (masteryIndex < 0) {
-      this.user[0].mastery.push({tag: 'ml', actions: [action]})
+      masteryUser.mastery.push({tag: 'ml', actions: [action]})
     } else {
-      this.user[0].mastery[masteryIndex].actions.push(action)
+      masteryUser.mastery[masteryIndex].actions.push(action)
     }
     const user = this.db.doc('users/'+this.userID);
-    user.update({mastery: this.user[0].mastery});
+    user.update({mastery: masteryUser.mastery});
+  }
+
+  getMastery(exercise, user):number {
+    var mastery = user.mastery.find(m => m.tag == exercise.tags[0])
+    console.log(mastery, exercise.tags[0])
+    if (mastery) {
+      return mastery.actions.length;
+    }
+    return 0;
   }
 
   initUser(uid) {
