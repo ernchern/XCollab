@@ -34,13 +34,13 @@
             <div class="card-body">
                 <div class="list-group">
                     <a class="discussion list-group-item">
-                        <h3>{{discussion?.title}}     <button *ngIf="!discussion.solved" type="button" class="btn btn-discussion btn-outline-danger float-right">Unsolved</button>
-                                                      <button *ngIf="discussion.solved" type="button" class="btn btn-discussion btn-outline-success float-right">Solved</button></h3>
+                        <h3>{{discussion?.title}}     <button *ngIf="!discussion?.solved" type="button" class="btn btn-discussion btn-outline-danger float-right">Unsolved</button>
+                                                      <button *ngIf="discussion?.solved" type="button" class="btn btn-discussion btn-outline-success float-right">Solved</button></h3>
                         <p>{{discussion?.body}}</p>
                     </a>
-                    <div *ngIf="this.discussion.summary?.length > 0" class="list-group-item list-group-item-action">Summary: {{discussion?.summary}}</div>
-                        <button *ngIf="this.discussion.summary?.length == 0 && this.comments.length > 0" class="btn btn-primary" (click)="showSummarize=!showSummarize">Summarize</button>
-                        <div *ngIf="showSummarize && this.discussion.summary.length == 0 && this.comments.length > 0">
+                    <div *ngIf="this.discussion?.summary?.length > 0" class="list-group-item list-group-item-action">Summary: {{discussion?.summary}}</div>
+                        <button *ngIf="this.discussion?.summary?.length == 0 && this.comments?.length > 0" class="btn btn-primary" (click)="showSummarize=!showSummarize">Summarize</button>
+                        <div *ngIf="showSummarize && this.discussion?.summary?.length == 0 && this.comments.length > 0">
                           <form class="form" (ngSubmit)="summarize(); summarizeForm.reset()" #summarizeForm="ngForm">
                               <div class="input-group">
                                   <div class="input-group-prepend">

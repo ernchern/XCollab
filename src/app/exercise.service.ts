@@ -100,7 +100,7 @@ export class ExerciseService {
 
   updateMastery(tag: string, action: string, masteryUser?: User) {
     if (!masteryUser) {
-      masteryUser = this.user[0]
+      masteryUser = this.user
     }
     var masteryIndex = masteryUser.mastery.findIndex(m => m.tag == 'ml')
     if (masteryIndex < 0) {
@@ -113,8 +113,8 @@ export class ExerciseService {
   }
 
   getMastery(exercise, user):number {
-    var mastery = user.mastery.find(m => m.tag == exercise.tags[0])
-    console.log(mastery, exercise.tags[0])
+    var mastery = user.mastery.find(m => m.tag == exercise.tags)
+    console.log(mastery, exercise.tags)
     if (mastery) {
       return mastery.actions.length;
     }
@@ -130,7 +130,7 @@ export class ExerciseService {
         this.userID = id;
         this.userName = data.name;
         return { id, ...data }
-      }))).subscribe(d => this.checkUser(d, uid));
+      }))).subscribe(d => this.checkUser(d[0], uid));
   }
 
   checkUser(user, uid) {
@@ -152,17 +152,17 @@ export class ExerciseService {
   }
 
   modifyCoins(number) : void {
-    console.log("Prev Coins: " + this.user[0].coins);
+    console.log("Prev Coins: " + this.user.coins);
     const reference = this.db.doc('users/' + this.userID);
-    reference.update({coins: this.user[0].coins += number});
-    console.log("Curr Coins: " + this.user[0].coins);
+    reference.update({coins: this.user.coins += number});
+    console.log("Curr Coins: " + this.user.coins);
   }
 
   modifyOthersCoins(user_id, number) : void {
-    console.log("Prev Coins: " + this.user[0].coins);
+    console.log("Prev Coins: " + this.user.coins);
     const reference = this.db.doc('users/' + user_id);
-    reference.update({coins: this.user[0].coins += number});
-    console.log("Curr Coins: " + this.user[0].coins);
+    reference.update({coins: this.user.coins += number});
+    console.log("Curr Coins: " + this.user.coins);
   }
 
   setSummary(exercise_id, discussion_id, summary) {
@@ -185,7 +185,7 @@ export class ExerciseService {
 
   addUnlockedExercise(exercise_id): void {
     const reference = this.db.doc('users/'+this.userID);
-    const prev_unlocked = this.user[0].unlocked;
+    const prev_unlocked = this.user.unlocked;
     reference.update({unlocked: prev_unlocked.concat([exercise_id])});
   }
 

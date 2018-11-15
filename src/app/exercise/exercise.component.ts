@@ -46,7 +46,7 @@ export class ExerciseComponent implements OnInit {
     this.exercise_id = id;
     this.exerciseService.getExercise(id).subscribe(d => this.exercise = d);
     this.exerciseService.getDiscussions(id).subscribe(d => this.discussions = d.sort((a, b) => b.concerned.length - a.concerned.length));
-    this.discussionUnlocked = this.exerciseService.user[0].unlocked.indexOf(id) > -1;
+    this.discussionUnlocked = this.exerciseService.user.unlocked.indexOf(id) > -1;
   }
 
   saveDiscussion(): void {
@@ -76,16 +76,16 @@ export class ExerciseComponent implements OnInit {
   }
 
   unlockDiscussion(): void {
-    console.log(this.exerciseService.user[0].coins)
+    console.log(this.exerciseService.user.coins)
     if (!this.showDiscussion) {
-      if(this.exerciseService.user[0].coins > 0 && this.exerciseService.user[0].unlocked.indexOf(this.exercise_id) == -1) {
+      if(this.exerciseService.user.coins > 0 && this.exerciseService.user.unlocked.indexOf(this.exercise_id) == -1) {
         this.exerciseService.modifyCoins(-1);
         this.exerciseService.addUnlockedExercise(this.exercise_id);
         this.discussionUnlocked = true;
         this.showDiscussion = !this.showDiscussion;
-      } else if (this.exerciseService.user[0].unlocked.indexOf(this.exercise_id) > -1) {
+      } else if (this.exerciseService.user.unlocked.indexOf(this.exercise_id) > -1) {
         this.showDiscussion = !this.showDiscussion;
-      } else if(this.exerciseService.user[0].coins < 1) {
+      } else if(this.exerciseService.user.coins < 1) {
         alert("Not enough coins. You need 1 coin to unlock discussions.");
       }
     } else {

@@ -37,7 +37,7 @@ export class CommentPreviewComponent implements OnInit {
 
   markAsSolution() {
     console.log("Mark as solution");
-    if (this.exerciseService.user[0].uid != this.comment.author) {
+    if (this.exerciseService.user.uid != this.comment.author) {
       this.comment.solution = true;
       const exercise_id = this.route.snapshot.paramMap.get('exercise_id');
       const discussion_id = this.route.snapshot.paramMap.get('discussion_id');

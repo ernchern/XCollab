@@ -30,11 +30,15 @@ export class DiscussionPreviewComponent implements OnInit {
     const user_uid = this.discussion.author;
     this.exerciseService.getUser(user_uid).subscribe((user) => {
       this.user = user[0];
-      this.mastery = this.exerciseService.getMastery(this.exercise, this.user)});
+      this.mastery = this.exerciseService.getMastery(this.exercise, this.user)
+      if (this.exerciseService.user.unlocked.indexOf(this.discussion.id) > -1) {
+        this.commentsUnlocked = true;
+      }
+    });
   }
 
   unlockComments() {
-    if(this.exerciseService.user[0].coins > 0 && !this.commentsUnlocked) {
+    if(this.exerciseService.user.coins > 0 && !this.commentsUnlocked) {
       this.exerciseService.modifyCoins(-1);
       this.exerciseService.addUnlockedDiscussion(this.discussion.id);
       this.commentsUnlocked = true;
@@ -43,7 +47,7 @@ export class DiscussionPreviewComponent implements OnInit {
     } else if (this.commentsUnlocked) {
         console.log("goes to comments - already unlocked")
         this.router.navigate(['exercise/' + this.exercise_id + '/discussion/' + this.discussion.id]);
-    } else if (this.exerciseService.user[0].coins < 1) {
+    } else if (this.exerciseService.user.coins < 1) {
       alert("Not enough coins. You need 1 coin to unlock comments for a discussion.");
     }
   }
@@ -51,9 +55,6 @@ export class DiscussionPreviewComponent implements OnInit {
   ngOnInit() {
     this.exercise_id = this.route.snapshot.paramMap.get('exercise_id');
     this.getData();
-    if (this.exerciseService.user[0].unlocked.indexOf(this.discussion.id) > -1) {
-      this.commentsUnlocked = true;
-    }
   }
   test() {
     console.log('test')
