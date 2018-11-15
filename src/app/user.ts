@@ -5,6 +5,7 @@ export class User {
   coins: number;
   unlocked: string[];
   concerned: string[];
+  mastery: {'tag':string, 'actions':string[]}[];
   constructor(
     uid:string
   ) {
@@ -13,6 +14,7 @@ export class User {
     var colors = ['Orange', 'Blue', 'Purple', 'Green', 'Yellow', 'Pink', 'Black', 'White']
     var c_ind = Math.floor(Math.random() * colors.length);
     this.uid = uid;
+    this.mastery = [];
     this.signature = '';
     this.name = colors[c_ind] + " " + fruits[f_ind];
   }

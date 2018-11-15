@@ -49,6 +49,7 @@ export class ExerciseComponent implements OnInit {
   saveDiscussion(): void {
     var id = this.route.snapshot.paramMap.get('exercise_id');
     this.exerciseService.addDiscussion(id, this.discussion);
+    this.exerciseService.updateMastery(this.exercise.tags[0], 'd')
     this.exerciseService.modifyCoins(2);
   }
 

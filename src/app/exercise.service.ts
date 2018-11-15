@@ -92,6 +92,17 @@ export class ExerciseService {
     discussion.collection<string>('comments').add(comment);
   }
 
+  updateMastery(tag, action) {
+    var masteryIndex = this.user[0].mastery.findIndex(m => m.tag == 'ml')
+    if (masteryIndex < 0) {
+      this.user[0].mastery.push({tag: 'ml', actions: [action]})
+    } else {
+      this.user[0].mastery[masteryIndex].actions.push(action)
+    }
+    const user = this.db.doc('users/'+this.userID);
+    user.update({mastery: this.user[0].mastery});
+  }
+
   initUser(uid) {
     this.userUID = uid;
     var sub = this.db.collection<User>('users', ref => ref.where('uid', '==', uid)).snapshotChanges().pipe(
@@ -114,6 +125,7 @@ export class ExerciseService {
         coins: 4,
         unlocked: [],
         concerned: [],
+        mastery: []
       });
     } else {
       this.user = user;
