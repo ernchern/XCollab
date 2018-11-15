@@ -40,7 +40,10 @@
                         <p>{{discussion?.body}}</p>
                     </a>
                         <a *ngFor="let comment of comments" class="list-group-item list-group-item-action">
-                            <app-comment-preview [comment]="comment"></app-comment-preview>
+                            <app-comment-preview
+                                [comment]="comment"
+                                [exercise]="exercise"
+                            ></app-comment-preview>
                         </a>
                 </div>
                 <br>

@@ -37,7 +37,8 @@
                 <div class="card-body">
                     <div class="list-group">
                         <div *ngFor="let discussion of discussions" class="discussion list-group-item list-group-item-action"style="z-index=-1">
-                            <app-discussion-preview [discussion]="discussion"></app-discussion-preview>
+                            <app-discussion-preview [discussion]="discussion"
+                                                    [exercise]="exercise"></app-discussion-preview>
                         </div>
                     </div>
                     <br>
