@@ -30,7 +30,6 @@ export class DiscussionPreviewComponent implements OnInit {
   }
 
   unlockComments() {
-    console.log(this.commentsUnlocked);
     if(this.exerciseService.user[0].coins > 0 && !this.commentsUnlocked) {
       this.exerciseService.modifyCoins(-1);
       this.exerciseService.addUnlockedDiscussion(this.discussion.id);
