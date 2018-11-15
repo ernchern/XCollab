@@ -1,1 +1,4 @@
-<p>{{comment.body}} <span class="blockquote-footer float-right"> by {{user?.name}}</span></p>
+<span *ngIf="!comment.solution || showSolution">
+  <p>{{comment.body}} <span class="blockquote-footer float-right"> by {{user?.name}}</span></p> <button type="button" class="btn btn-block" *ngIf="!comment.solution" (click)="markAsSolution()">Mark as Solution</button>
+</span>
+<button *ngIf="comment.solution && !showSolution" class="btn btn-primary" (click)="showSolution=!showSolution">Show Solution</button>

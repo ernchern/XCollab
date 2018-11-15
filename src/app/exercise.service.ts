@@ -111,7 +111,7 @@ export class ExerciseService {
         uid: this.user.uid,
         name: this.user.name,
         signature: this.user.signature,
-        coins: 0,
+        coins: 4,
         unlocked: [],
         concerned: [],
       });
@@ -122,7 +122,14 @@ export class ExerciseService {
 
   modifyCoins(number) : void {
     console.log("Prev Coins: " + this.user[0].coins);
-    const reference = this.db.doc('users/'+this.userID);
+    const reference = this.db.doc('users/' + this.userID);
+    reference.update({coins: this.user[0].coins += number});
+    console.log("Curr Coins: " + this.user[0].coins);
+  }
+
+  modifyOthersCoins(user_id, number) : void {
+    console.log("Prev Coins: " + this.user[0].coins);
+    const reference = this.db.doc('users/' + user_id);
     reference.update({coins: this.user[0].coins += number});
     console.log("Curr Coins: " + this.user[0].coins);
   }
@@ -151,6 +158,13 @@ export class ExerciseService {
   isConcerned(discussion): boolean {
     console.log('isConcerned', discussion)
     return discussion.concerned.indexOf(this.userUID) > -1;
+  }
+
+  setSolvedComment(exercise_id, discussion_id, comment_id) {
+    const reference = this.db.doc('exercises/' + exercise_id + "/discussions/" + discussion_id + "/comments/" + comment_id);
+    reference.update({solution : true});
+    const reference2 = this.db.doc('exercises/' + exercise_id + "/discussions/" + discussion_id);
+    reference2.update({solved : true});
   }
 
   constructor(private db: AngularFirestore, private afAuth: AngularFireAuth) {
