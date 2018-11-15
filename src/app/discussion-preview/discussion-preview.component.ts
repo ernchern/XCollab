@@ -43,6 +43,8 @@ export class DiscussionPreviewComponent implements OnInit {
     } else if (this.commentsUnlocked) {
         console.log("goes to comments - already unlocked")
         this.router.navigate(['exercise/' + this.exercise_id + '/discussion/' + this.discussion.id]);
+    } else if (this.exerciseService.user[0].coins < 1) {
+      alert("Not enough coins. You need 1 coin to unlock comments for a discussion.");
     }
   }
 

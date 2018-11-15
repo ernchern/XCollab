@@ -171,6 +171,8 @@ export class ExerciseService {
       console.log(path)
       console.log(discussion)
       this.db.doc(path).update({concerned: discussion.concerned})
+    } else {
+      alert("You have already corcerned this discussion.");
     }
   }
 
