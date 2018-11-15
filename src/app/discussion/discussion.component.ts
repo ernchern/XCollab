@@ -22,7 +22,9 @@ export class DiscussionComponent implements OnInit {
     concerned: [],
     solution: false,
     summary: '',
-  }
+  };
+  summary: String;
+  showSummarize: Boolean = false;
 
   constructor(
     private exerciseService: ExerciseService,
@@ -40,6 +42,13 @@ export class DiscussionComponent implements OnInit {
     this.exerciseService.getExercise(exercise_id).subscribe(e => this.exercise = e);
     this.exerciseService.getDiscussion(exercise_id, discussion_id).subscribe(d => this.discussion = d);
     this.exerciseService.getComments(exercise_id, discussion_id).subscribe(d => this.comments = d);
+  }
+
+  summarize(): void {
+    const exercise_id = this.route.snapshot.paramMap.get('exercise_id');
+    const discussion_id = this.route.snapshot.paramMap.get('discussion_id');
+    this.exerciseService.setSummary(exercise_id, discussion_id, this.summary);
+    this.exerciseService.modifyCoins(2);
   }
 
   saveComment(): void {

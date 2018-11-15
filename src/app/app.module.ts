@@ -18,6 +18,8 @@ import { DiscussionPreviewComponent } from './discussion-preview/discussion-prev
 import { UserComponent } from './user/user.component';
 import { CommentPreviewComponent } from './comment-preview/comment-preview.component';
 
+import { NgxMdModule } from 'ngx-md';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,8 @@ import { CommentPreviewComponent } from './comment-preview/comment-preview.compo
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireStorageModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    NgxMdModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

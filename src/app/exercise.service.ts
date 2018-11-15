@@ -134,6 +134,11 @@ export class ExerciseService {
     console.log("Curr Coins: " + this.user[0].coins);
   }
 
+  setSummary(exercise_id, discussion_id, summary) {
+    const path = 'exercises/' + exercise_id + '/discussions/' + discussion_id;
+    this.db.doc(path).update({summary: summary});
+  }
+
   toggleConcern(exercise_id, discussion) {
     console.log('toggle', discussion)
     if (!this.isConcerned(discussion)) {

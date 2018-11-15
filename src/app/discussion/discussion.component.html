@@ -39,6 +39,19 @@
                         <h3>{{discussion?.title}} <button type="button" class="btn btn-danger float-right">unsolved</button></h3>
                         <p>{{discussion?.body}}</p>
                     </a>
+                    <div *ngIf="this.discussion.summary.length > 0" class="list-group-item list-group-item-action">Summary: {{discussion?.summary}}</div>
+                        <button *ngIf="this.discussion.summary.length == 0" class="btn btn-primary" (click)="showSummarize=!showSummarize">Summarize</button>
+                        <div *ngIf="showSummarize && this.discussion.summary.length == 0">
+                          <form class="form" (ngSubmit)="summarize(); summarizeForm.reset()" #summarizeForm="ngForm">
+                              <div class="input-group">
+                                  <div class="input-group-prepend">
+                                      <span class="input-group-text">Summarize (+2)</span>
+                                  </div>
+                                  <textarea class="form-control custom-control" required rows="3" [(ngModel)]="summary" placeholder="Body" aria-label="Body" name="body"></textarea>
+                                  <button type="submit" class="btn btn-primary input-group-addon float-right" [disabled]="!summarizeForm.form.valid">Submit</button>
+                              </div>
+                          </form>
+                        </div>
                         <a *ngFor="let comment of comments" class="list-group-item list-group-item-action">
                             <app-comment-preview [comment]="comment"></app-comment-preview>
                         </a>

@@ -39,7 +39,7 @@ export class DiscussionPreviewComponent implements OnInit {
     } else if (this.commentsUnlocked) {
         console.log("goes to comments - already unlocked")
         this.router.navigate(['exercise/' + this.exercise_id + '/discussion/' + this.discussion.id]);
-      }
+    }
   }
 
   ngOnInit() {
