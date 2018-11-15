@@ -43,7 +43,7 @@ export class ExerciseComponent implements OnInit {
     this.exercise_id = id;
     this.exerciseService.getExercise(id).subscribe(d => this.exercise = d);
     this.exerciseService.getDiscussions(id).subscribe(d => this.discussions = d.sort((a, b) => b.concerned.length - a.concerned.length));
-    // this.discussionUnlocked = this.exerciseService.user[0].unlocked.indexOf(id) > -1; //for some reason user is undefined lol
+    this.discussionUnlocked = this.exerciseService.user[0].unlocked.indexOf(id) > -1;
   }
 
   saveDiscussion(): void {
@@ -53,9 +53,8 @@ export class ExerciseComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("Exercise Init");
     this.getData();
-    }
+  }
 
   goBack(): void {
     this.location.back();
