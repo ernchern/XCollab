@@ -17,8 +17,7 @@
                         Mastery
                     </div>
                     <div class="card-body">
-                        <h3><span class="badge badge-pill badge-primary"> Machine Learning <span class="badge badge-light">💫 Level 2</span></span></h3>
-                        <h3><span class="badge badge-pill badge-primary"> Linguistic <span class="badge badge-light">💫 Level 1</span></span></h3>
+                        <h4 *ngFor="let masteryLabel of masteryLabels; let i = index" [attr.data-index]="i"><span class="badge badge-pill badge-primary"> {{masteryLabel}} 👑 {{masteries[i]}}</span></h4>
                     </div>
                 </div>
             </div>
