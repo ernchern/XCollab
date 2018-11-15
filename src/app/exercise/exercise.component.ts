@@ -8,6 +8,8 @@ import { Exercise } from '../exercise';
 import { Discussion } from '../discussion';
 import { User } from '../user';
 
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-exercise',
   templateUrl: './exercise.component.html',
@@ -31,7 +33,8 @@ export class ExerciseComponent implements OnInit {
   constructor(
     private exerciseService: ExerciseService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+	private modalService: NgbModal
   ) { }
 
   exerciseId(): string {
@@ -52,7 +55,18 @@ export class ExerciseComponent implements OnInit {
     this.exerciseService.updateMastery(this.exercise.tags[0], 'd')
     this.exerciseService.modifyCoins(2);
   }
+  
+  checkLength(): boolean {
+	if (this.discussion.title.length > 15 && this.discussion.body.length > 30) {
+		return true
+	}
+	return false
+  }
 
+  open(content) {
+    this.modalService.open(content);
+  }
+  
   ngOnInit() {
     this.getData();
   }

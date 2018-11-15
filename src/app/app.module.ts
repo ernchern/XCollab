@@ -13,6 +13,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 import { environment } from '../environments/environment';
 import { DiscussionPreviewComponent } from './discussion-preview/discussion-preview.component';
 import { UserComponent } from './user/user.component';
@@ -32,6 +34,7 @@ import { CommentPreviewComponent } from './comment-preview/comment-preview.compo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+	NgbModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireStorageModule,
