@@ -46,6 +46,9 @@ export class DiscussionComponent implements OnInit {
     var exercise_id = this.route.snapshot.paramMap.get('exercise_id');
     var discussion_id = this.route.snapshot.paramMap.get('discussion_id');
     this.exerciseService.addComment(exercise_id, discussion_id, this.comment);
+    // Update mastery
+    this.exerciseService.updateMastery(this.exercise.tags[0], 'c')
+    // Update coins
     this.exerciseService.modifyCoins(2);
   }
 
