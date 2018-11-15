@@ -9,7 +9,7 @@ import { ExerciseService } from './exercise.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'XLab';
+  title = 'XCollab';
   currentUser: string;
 
   constructor(public afAuth: AngularFireAuth, private exerciseService: ExerciseService) {
