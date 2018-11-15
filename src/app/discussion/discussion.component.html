@@ -24,9 +24,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse blandit nec neque ac vehicula. Fusce maximus metus et mi bibendum convallis sit amet et ipsum. Duis dui odio, viverra non hendrerit vitae, facilisis quis nibh. Fusce eu accumsan nulla, eget varius turpis. Integer maximus quam elit, nec finibus nulla egestas in. Ut eu leo sit amet lectus dictum maximus. Proin facilisis sit amet sem mattis luctus. Nulla orci magna, vulputate in sagittis at, lobortis vitae neque. Cras vestibulum massa pretium pellentesque pharetra. Sed sit amet congue justo, vitae elementum sapien. Fusce molestie neque in mi pretium elementum.
-
-                    Ut accumsan finibus ligula, sit amet imperdiet velit interdum at. Praesent dui lectus, lobortis eget justo sed, rhoncus commodo sem. Suspendisse in neque a nisl convallis bibendum sed iaculis est. Cras volutpat interdum sapien, eget tempus dolor consectetur vitae. Suspendisse nec facilisis ligula. Donec convallis, lectus vitae feugiat ultrices, odio sapien ornare purus, semper euismod lectus risus et odio. Aenean sodales egestas felis, ut dignissim justo rhoncus sit amet. Mauris quis sollicitudin felis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec fringilla quam non imperdiet consequat. Mauris ultricies turpis nunc, in tempus metus gravida ac. Cras pulvinar mauris a erat congue gravida.
+                  <ngx-md [data]="exercise?.body"></ngx-md>
                 </div>
             </div>
         </div>
@@ -36,12 +34,13 @@
             <div class="card-body">
                 <div class="list-group">
                     <a class="discussion list-group-item">
-                        <h3>{{discussion?.title}} <button type="button" class="btn btn-danger float-right">unsolved</button></h3>
+                        <h3>{{discussion?.title}}     <button *ngIf="!discussion.solved" type="button" class="btn btn-discussion btn-outline-danger float-right">Unsolved</button>
+                                                      <button *ngIf="discussion.solved" type="button" class="btn btn-discussion btn-outline-success float-right">Solved</button></h3>
                         <p>{{discussion?.body}}</p>
                     </a>
                     <div *ngIf="this.discussion.summary.length > 0" class="list-group-item list-group-item-action">Summary: {{discussion?.summary}}</div>
-                        <button *ngIf="this.discussion.summary.length == 0" class="btn btn-primary" (click)="showSummarize=!showSummarize">Summarize</button>
-                        <div *ngIf="showSummarize && this.discussion.summary.length == 0">
+                        <button *ngIf="this.discussion.summary.length == 0 && this.comments.length > 0" class="btn btn-primary" (click)="showSummarize=!showSummarize">Summarize</button>
+                        <div *ngIf="showSummarize && this.discussion.summary.length == 0 && this.comments.length > 0">
                           <form class="form" (ngSubmit)="summarize(); summarizeForm.reset()" #summarizeForm="ngForm">
                               <div class="input-group">
                                   <div class="input-group-prepend">

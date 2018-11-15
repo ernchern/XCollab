@@ -71,6 +71,8 @@ export class ExerciseComponent implements OnInit {
         this.showDiscussion = !this.showDiscussion;
       } else if (this.exerciseService.user[0].unlocked.indexOf(this.exercise_id) > -1) {
         this.showDiscussion = !this.showDiscussion;
+      } else if(this.exerciseService.user[0].coins < 1) {
+        alert("Not enough coins. You need 1 coin to unlock discussions.");
       }
     } else {
       this.showDiscussion = !this.showDiscussion;
