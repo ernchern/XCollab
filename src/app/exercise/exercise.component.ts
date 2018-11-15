@@ -28,7 +28,7 @@ export class ExerciseComponent implements OnInit {
     concerned: [],
     solved: false,
   }
-  exercise_id: String;
+  exercise_id: string;
 
   constructor(
     private exerciseService: ExerciseService,
