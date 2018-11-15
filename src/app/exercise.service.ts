@@ -62,7 +62,13 @@ export class ExerciseService {
   // Returns an array, get the first element.
   getUser(user_uid): Observable<User[]> {
     const user = this.db.collection<User>('users', ref => ref.where('uid', '==', user_uid))
-    return user.valueChanges();
+    return user.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as User;
+        const id = a.payload.doc.id;
+        return { id, ...data }
+      }))
+    );
   }
 
   getComments(exercise_id, discussion_id): Observable<Comment[]> {

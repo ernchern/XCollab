@@ -20,7 +20,7 @@ export class DiscussionPreviewComponent implements OnInit {
   mastery: number;
 
   constructor(
-    private exerciseService: ExerciseService,
+    public exerciseService: ExerciseService,
     private route: ActivatedRoute,
     private location: Location,
     private router: Router
