@@ -1,14 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" routerLink="/search">XLab</a>
+  <a class="navbar-brand" routerLink="/search">XCollab</a>
 
   <div *ngIf="afAuth.user | async as user; else showLogin">
     <p class="coins">
       {{this.exerciseService.user[0].coins}} Coins
     </p>
-      <img src="https://scontent.ficn2-1.fna.fbcdn.net/v/t1.0-9/43952964_2393122984036767_287812823726161920_o.jpg?_nc_cat=101&oh=7c16b102e1e87b78ee3176ad8b3ee489&oe=5C608DF8"
-           class="ratio responsive rounded-circle float-right" routerLink="/user/{{ user.uid }}" style="max-height: 35px;"/>
-      <button class="btn" (click)="logout()">Logout</button>
+    <a class="float-right white" routerLink="/user/{{ user.uid }}" style="max-height: 35px;"> Profile </a>
+    <button class="btn" (click)="logout()">Logout</button>
   </div>
   <ng-template #showLogin>
       <button class="btn" (click)="login()">Login with Google</button>

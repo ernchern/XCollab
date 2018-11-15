@@ -13,9 +13,11 @@ import { User } from '../user';
 })
 export class DiscussionPreviewComponent implements OnInit {
   @Input('discussion') discussion: Discussion;
+  @Input('exercise') exercise: Exercise;
   exercise_id: string;
   commentsUnlocked: Boolean = false;
   user: User;
+  mastery: number;
 
   constructor(
     private exerciseService: ExerciseService,
@@ -26,7 +28,9 @@ export class DiscussionPreviewComponent implements OnInit {
 
   getData(): void {
     const user_uid = this.discussion.author;
-    this.exerciseService.getUser(user_uid).subscribe(user => {this.user = user[0];});
+    this.exerciseService.getUser(user_uid).subscribe((user) => {
+      this.user = user[0];
+      this.mastery = this.exerciseService.getMastery(this.exercise, this.user)});
   }
 
   unlockComments() {
@@ -39,7 +43,9 @@ export class DiscussionPreviewComponent implements OnInit {
     } else if (this.commentsUnlocked) {
         console.log("goes to comments - already unlocked")
         this.router.navigate(['exercise/' + this.exercise_id + '/discussion/' + this.discussion.id]);
-      }
+    } else if (this.exerciseService.user[0].coins < 1) {
+      alert("Not enough coins. You need 1 coin to unlock comments for a discussion.");
+    }
   }
 
   ngOnInit() {

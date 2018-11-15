@@ -1,7 +1,7 @@
 <p>
-    {{discussion.title}} <span class="blockquote-footer author"> by <a routerLink="/user/{{user.id}}"> {{user.name}}</a> <div style="display:inline; font-size: 15px; color: red;"*ngIf="!commentsUnlocked">  (-1)</div></span>
-    <button *ngIf="!discussion.solved" type="button" class="btn btn-discussion btn-outline-danger float-right">unsolved</button>
-    <button *ngIf="discussion.solved" type="button" class="btn btn-discussion btn-outline-success float-right">solved</button>
+      {{discussion.title}} <span class="blockquote-footer author"> by <a routerLink="/user/{{user?.id}}"> {{user?.name}}</a><span class="badge badge-pill badge-info" *ngIf="mastery>0"> 👑 {{mastery}}</span> <div style="display:inline; font-size: 15px; color: red;"*ngIf="!commentsUnlocked">  (-1)</div></span>
+    <button *ngIf="!discussion.solved" type="button" class="btn btn-discussion btn-outline-danger float-right">Unsolved</button>
+    <button *ngIf="discussion.solved" type="button" class="btn btn-discussion btn-outline-success float-right">Solved</button>
     <button type="button" ng-class="exerciseService.isConcerned(discussion)'btn-outline-info':'btn-info'" (click)="exerciseService.toggleConcern(exercise_id, discussion)" class="btn btn-discussion float-right">✋{{discussion.concerned.length}}</button>
     <!---<a routerLink="discussion/{{discussion?.id}}">---><span class="filler" (click)="unlockComments()"></span><!---</a>--->
 </p>

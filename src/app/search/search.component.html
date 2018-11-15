@@ -3,7 +3,7 @@
         <input type="text" class="form-control" placeholder="Search...">
     </div>
     <div class="row">
-        <div class="column">
+        <div class="column w-100">
             <ul style="list-style-type:none">
             <li *ngFor="let exercise of exercises">
                 <div class="card mx-auto rounded">
@@ -19,7 +19,7 @@
                     </div>
                     <div class="card-body" style="max-height: 300px;">
                         <a routerLink="/exercise/{{exercise.id}}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in turpis et nunc imperdiet molestie at ut ante. Donec a est at lacus feugiat convallis vel sed dolor. Morbi vulputate fringilla felis in malesuada. Fusce dapibus augue urna, nec sagittis urna congue id. Nullam volutpat ultrices diam quis faucibus. Suspendisse erat nisl, commodo at fermentum ut, lobortis et mauris. Sed id odio vel justo pretium congue. Sed non lacus turpis. Ut accumsan pharetra vulputate. Suspendisse bibendum sed nisi sed vehicula. Fusce arcu magna, posuere tempor justo vitae, tincidunt elementum purus. Aliquam erat volutpat. Pellentesque mattis tincidunt libero sed dapibus.</p>
+                        <p><ngx-md [data]="exercise?.body"></ngx-md></p>
                         </a>
                     </div>
                 </div>
