@@ -1,64 +1,60 @@
-<div class="container mt-4">
+<div class="container-fluid mt-4">
     <div class="row mb-4">
         <div class="col">
             <!-- Top bar -->
-            <div class="form-group">
-                <button (click)="goBack()" class="btn float-left">Go back to discussions</button>
-            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col" [class.col-12]="!showDiscussion">
+    <div class="row justify-content-md-center">
+        <div class="col" [class.col-lg-6]="!showDiscussion">
             <!-- Exercise -->
             <div class="card border-secondary mx-auto rounded document_open pre-scrollable">
                 <div class="card-header bg-secondary">
-                    <div class="d-flex flex-row bd-highlight mb-3">
-                        <div class="p-2 flex-fill bd-highlight">
-                            <p>{{exercise?.title}}, {{exercise?.tags}}</p>
+                    <div class="d-flex justify-content-between">
+                        <div class="p-2">
+                            <h3>{{(exercise?.title)}}</h3>
+                            <h6><span class="badge badge-pill badge-primary" *ngFor="let tag of exercise?.tags">{{exercise?.tags}}</span></h6>
                         </div>
-                        <div class="p-2 flex-fill bd-highlight">
-                            <div class="buttons">
-                                <button (click)="showDiscussion=!showDiscussion" class="btn float-right">Discussion</button>
+                        <div class="p-2">
+                            <div class="btn-group" role="group">
+                                <button (click)="goBack()" class="btn">Go back to discussions</button>
+                                <button (click)="showDiscussion=!showDiscussion" class="btn">Discussion</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                  <ngx-md [data]="exercise?.body"></ngx-md>
+                    <ngx-md [data]="exercise?.body"></ngx-md>
                 </div>
             </div>
         </div>
-    <div class="col">
-        <!-- Discussion -->
-        <div class="card mx-auto rounded discussion" [hidden]="!showDiscussion">
-            <div class="card-body">
-                <div class="list-group">
-                    <a class="discussion list-group-item">
-                        <h3>{{discussion?.title}}     <button *ngIf="!discussion?.solved" type="button" class="btn btn-discussion btn-outline-danger float-right">Unsolved</button>
-                                                      <button *ngIf="discussion?.solved" type="button" class="btn btn-discussion btn-outline-success float-right">Solved</button></h3>
-                        <p>{{discussion?.body}}</p>
-                    </a>
-                    <div *ngIf="this.discussion?.summary?.length > 0" class="list-group-item list-group-item-action">Summary: {{discussion?.summary}}</div>
+        <div class="col" *ngIf="showDiscussion">
+            <!-- Discussion -->
+            <div class="card mx-auto rounded discussion">
+                <div class="card-body">
+                    <div class="list-group">
+                        <a class="discussion list-group-item">
+                            <h3>{{discussion?.title}} <button *ngIf="!discussion?.solved" type="button" class="btn btn-discussion btn-outline-danger float-right">Unsolved</button>
+                                <button *ngIf="discussion?.solved" type="button" class="btn btn-discussion btn-outline-success float-right">Solved</button></h3>
+                            <p>{{discussion?.body}}</p>
+                        </a>
+                        <div *ngIf="this.discussion?.summary?.length > 0" class="list-group-item list-group-item-action">Summary: {{discussion?.summary}}</div>
                         <button *ngIf="this.discussion?.summary?.length == 0 && this.comments?.length > 0" class="btn btn-primary" (click)="showSummarize=!showSummarize">Summarize</button>
                         <div *ngIf="showSummarize && this.discussion?.summary?.length == 0 && this.comments.length > 0">
-                          <form class="form" (ngSubmit)="summarize(); summarizeForm.reset()" #summarizeForm="ngForm">
-                              <div class="input-group">
-                                  <div class="input-group-prepend">
-                                      <span class="input-group-text">Summarize (+2)</span>
-                                  </div>
-                                  <textarea class="form-control custom-control" required rows="3" [(ngModel)]="summary" placeholder="Body" aria-label="Body" name="body"></textarea>
-                                  <button type="submit" class="btn btn-primary input-group-addon float-right" [disabled]="!summarizeForm.form.valid">Submit</button>
-                              </div>
-                          </form>
+                            <form class="form" (ngSubmit)="summarize(); summarizeForm.reset()" #summarizeForm="ngForm">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Summarize (+2)</span>
+                                    </div>
+                                    <textarea class="form-control custom-control" required rows="3" [(ngModel)]="summary" placeholder="Body" aria-label="Body" name="body"></textarea>
+                                    <button type="submit" class="btn btn-primary input-group-addon float-right" [disabled]="!summarizeForm.form.valid">Submit</button>
+                                </div>
+                            </form>
                         </div>
                         <a *ngFor="let comment of comments" class="list-group-item list-group-item-action">
-                            <app-comment-preview
-                                [comment]="comment"
-                                [exercise]="exercise"
-                            ></app-comment-preview>
+                            <app-comment-preview [comment]="comment" [exercise]="exercise"></app-comment-preview>
                         </a>
-                </div>
-                <br>
+                    </div>
+                    <br>
                     <form class="form" (ngSubmit)="saveComment(); commentForm.reset()" #commentForm="ngForm">
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -68,7 +64,7 @@
                             <button type="submit" class="btn btn-primary input-group-addon float-right" [disabled]="!commentForm.form.valid">Submit</button>
                         </div>
                     </form>
+                </div>
             </div>
         </div>
     </div>
-</div>

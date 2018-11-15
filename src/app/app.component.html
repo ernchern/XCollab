@@ -3,9 +3,9 @@
   <a class="navbar-brand" routerLink="/search">XCollab</a>
 
   <span *ngIf="afAuth.user | async as user; else showLogin" style="display:inline;">
-      <button class="btn float-right" (click)="logout()">Logout</button>
-      <button class="btn btn-outline-info my-2 my-sm-0 float-right" routerLink="/user/{{ user.uid }}"> {{exerciseService.user?.name}}</button>
-      <button class="btn btn-outline-warning disabled my-2 my-sm-0 float-right">{{this.exerciseService.user?.coins}} Coins</button>
+      <button class="meta btn float-right" (click)="logout()">Logout</button>
+      <button class="meta btn btn-outline-info my-2 my-sm-0 float-right" routerLink="/user/{{ user.uid }}"> {{exerciseService.user?.name}}</button>
+      <button class="meta btn btn-outline-warning disabled my-2 my-sm-0 float-right">{{this.exerciseService.user?.coins}} Coins</button>
   </span>
   <ng-template #showLogin>
       <button class="btn" (click)="login()">Login with Google</button>

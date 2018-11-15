@@ -1,13 +1,13 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col">
+            <div class="text-center" style="width:100%"><h1>{{user?.name}}</h1></div>
             <div class="card-group text-center">
                 <div class="card">
                     <div class="card-header">
                         Score
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">{{user?.name}}</h5>
                         <p class="card-text">{{user?.signature}}</p>
                         <canvas id="myChart" width="400" height="400"></canvas>
                     </div>
@@ -17,7 +17,7 @@
                         Mastery
                     </div>
                     <div class="card-body">
-                        <h4 *ngFor="let masteryLabel of masteryLabels; let i = index" [attr.data-index]="i"><span class="badge badge-pill badge-primary"> {{masteryLabel}} 👑 {{masteries[i]}}</span></h4>
+                        <h4 *ngFor="let masteryLabel of masteryLabels; let i = index" [attr.data-index]="i"><span class="badge badge-pill badge-primary"> {{masteryLabel}}  👑 {{masteries[i]}}</span></h4>
                     </div>
                 </div>
             </div>
