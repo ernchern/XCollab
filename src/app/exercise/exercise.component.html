@@ -40,11 +40,11 @@
                     <div class="d-flex justify-content-between">
                         <div class="p-2">
                             <h3>{{(exercise?.title)}}</h3>
-                            <h6><span class="badge badge-pill badge-primary" *ngFor="let tag of exercise?.tags">{{exercise?.tags}}</span></h6>
+                            <h6><span class="badge badge-pill badge-primary" *ngFor="let tag of exercise?.tags">{{tag}}</span></h6>
                         </div>
                         <div class="p-2">
                             <div class="btn-group" role="group">
-                                <button (click)="unlockDiscussion()" class="btn float-right">Discussions <span *ngIf="!discussionUnlocked | async">(-1)</span></button>
+                                <button (click)="unlockDiscussion()" class="btn float-right">Discussions<span *ngIf="!discussionUnlocked">(-1)</span></button>
                             </div>
                         </div>
                     </div>
@@ -54,14 +54,13 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="showDiscussion" class="col">
+        <div *ngIf="showDiscussion" class="col lg-6">
             <!-- Discussion -->
             <div class="card primary mx-auto rounded discussion" [hidden]="!showDiscussion">
                 <div class="card-body">
                     <div class="list-group">
                         <div *ngFor="let discussion of discussions" class="discussion list-group-item list-group-item-action" style="z-index=-1">
-                            <app-discussion-preview [discussion]="discussion" [exercise]="exercise"></app-discussion-preview>
-                        </div>
+                            <app-discussion-preview [discussion]="discussion" [exercise]="exercise"></app-discussion-preview>                        </div>
                     </div>
                     <br>
                     <form class="form" (ngSubmit)="checkLength()&&discussionForm.reset()" #discussionForm="ngForm">

@@ -15,9 +15,10 @@ export class DiscussionPreviewComponent implements OnInit {
   @Input('discussion') discussion: Discussion;
   @Input('exercise') exercise: Exercise;
   exercise_id: string;
-  commentsUnlocked: Boolean = false;
+  commentsUnlocked: boolean = false;
   user: User;
   mastery: number;
+  isConcerned: boolean;
 
   constructor(
     public exerciseService: ExerciseService,
@@ -31,10 +32,11 @@ export class DiscussionPreviewComponent implements OnInit {
     this.exerciseService.getUser(user_uid).subscribe((user) => {
       this.user = user[0];
       this.mastery = this.exerciseService.getMastery(this.exercise, this.user)
-      if (this.exerciseService.user.unlocked.indexOf(this.discussion.id) > -1) {
-        this.commentsUnlocked = true;
-      }
     });
+    if (this.exerciseService.user.unlocked.indexOf(this.discussion.id) > -1) {
+      this.commentsUnlocked = true;
+    }
+    this.isConcerned = this.exerciseService.isConcerned(this.discussion)
   }
 
   unlockComments() {

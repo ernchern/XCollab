@@ -114,7 +114,6 @@ export class ExerciseService {
 
   getMastery(exercise, user):number {
     var mastery = user.mastery.find(m => m.tag == exercise.tags)
-    console.log(mastery, exercise.tags)
     if (mastery) {
       return mastery.actions.length;
     }
@@ -144,7 +143,6 @@ export class ExerciseService {
         unlocked: [],
         concerned: [],
         mastery: [],
-        id: undefined
       });
     } else {
       this.user = user;
@@ -185,8 +183,8 @@ export class ExerciseService {
 
   addUnlockedExercise(exercise_id): void {
     const reference = this.db.doc('users/'+this.userID);
-    const prev_unlocked = this.user.unlocked;
-    reference.update({unlocked: prev_unlocked.concat([exercise_id])});
+    this.user.unlocked.push(exercise_id)
+    reference.update({unlocked: this.user.unlocked});
   }
 
   addUnlockedDiscussion(discussion_id): void {
@@ -194,7 +192,6 @@ export class ExerciseService {
   }
 
   isConcerned(discussion): boolean {
-    console.log('isConcerned', discussion)
     return discussion.concerned.indexOf(this.userUID) > -1;
   }
 

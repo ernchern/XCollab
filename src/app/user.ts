@@ -6,7 +6,6 @@ export class User {
   unlocked: string[];
   concerned: string[];
   mastery: {'tag':string, 'actions':string[]}[];
-  id: String;
   constructor(
     uid:string
   ) {
