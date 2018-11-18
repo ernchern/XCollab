@@ -9,8 +9,6 @@ import { firestore } from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { reduce } from 'rxjs/operators';
-import { first } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +40,9 @@ export class ExerciseService {
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Discussion;
         const id = a.payload.doc.id;
+        if (data.author == this.userUID && !this.user.unlocked.includes(id)) {
+          this.addUnlockedDiscussion(id)
+        }
         return { id, ...data }
       }))
     );
