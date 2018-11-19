@@ -25,6 +25,7 @@ export class ExerciseComponent implements OnInit {
     title: '',
     body: '',
     summary: '',
+    summaryAuthorUID: '',
     concerned: [],
     solved: false,
   }

@@ -29,7 +29,6 @@
                     <div class="list-group">
                         <a class="discussion list-group-item">
                             <h3>{{discussion?.title}}
-
                                 <button *ngIf="!discussion?.solved" type="button" class="btn btn-discussion disabled btn-outline-danger float-right">Unsolved</button>
                                 <button *ngIf="discussion?.solved" type="button" class="btn btn-discussion btn-outline-success disabled float-right">Solved</button>
                             </h3>
@@ -37,7 +36,10 @@
 
                             <p>{{discussion?.body}}</p>
                         </a>
-                        <div *ngIf="this.discussion?.summary?.length > 0" class="list-group-item list-group-item-warning">Summary: {{discussion?.summary}}</div>
+                        <div *ngIf="this.discussion?.summary?.length > 0" class="list-group-item list-group-item-warning">
+                            <p>Summary: {{discussion?.summary}}</p>
+                            <p><small> by <a routerLink="/user/{{summaryAuthor?.uid}}">{{summaryAuthor?.name}} </a><span class="badge badge-pill badge-info" *ngIf="mastery>0"> 👑 {{summaryMastery}} </span> </small></p>
+                        </div>
                         <button *ngIf="this.discussion?.summary?.length == 0 && this.comments?.length > 0" class="btn btn-primary" (click)="showSummarize=!showSummarize">Summarize</button>
                         <div *ngIf="showSummarize && this.discussion?.summary?.length == 0 && this.comments.length > 0">
                             <form class="form" (ngSubmit)="summarize(); summarizeForm.reset()" #summarizeForm="ngForm">

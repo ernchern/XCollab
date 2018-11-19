@@ -171,7 +171,8 @@ export class ExerciseService {
 
   setSummary(exercise_id, discussion_id, summary) {
     const path = 'exercises/' + exercise_id + '/discussions/' + discussion_id;
-    this.db.doc(path).update({summary: summary});
+    this.db.doc(path).update({summary: summary,
+                              summaryAuthorUID: this.userUID});
   }
 
   toggleConcern(exercise_id, discussion) {

@@ -31,7 +31,7 @@ export class DiscussionPreviewComponent implements OnInit {
     const user_uid = this.discussion.author;
     this.exerciseService.getUser(user_uid).subscribe((user) => {
       this.user = user[0];
-      this.mastery = this.exerciseService.getMastery(this.exercise, this.user)
+      this.mastery = this.exerciseService.getMastery(this.exercise, user[0])
     });
     console.log('discussion comments unlocked?: ', this.commentsUnlocked)
     if (this.exerciseService.user.unlocked.indexOf(this.discussion.id) > -1) {

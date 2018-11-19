@@ -15,8 +15,9 @@ import { Location } from '@angular/common';
 export class DiscussionComponent implements OnInit {
   discussion: Discussion;
   author: User;
+  mastery: number;
   exercise: Exercise;
-  showDiscussion: Boolean = true;
+  showDiscussion: boolean = true;
   comments: Comment[];
   comment = {
     body: '',
@@ -25,7 +26,9 @@ export class DiscussionComponent implements OnInit {
     solution: false,
     summary: '',
   };
-  summary: String;
+  summary: string;
+  summaryAuthor: User;
+  summaryMastery: number;
   showSummarize: Boolean = false;
 
   constructor(
@@ -46,6 +49,11 @@ export class DiscussionComponent implements OnInit {
       this.discussion = d
       this.exerciseService.getUser(d.author).subscribe(u => {
         this.author = u[0];
+        this.mastery = this.exerciseService.getMastery(this.exercise, u[0])
+      })
+      this.exerciseService.getUser(this.discussion.summaryAuthorUID).subscribe(u => {
+        this.summaryAuthor = u[0];
+        this.summaryMastery = this.exerciseService.getMastery(this.exercise, u[0])
       })
     });
     this.exerciseService.getComments(exercise_id, discussion_id).subscribe(d => this.comments = d);

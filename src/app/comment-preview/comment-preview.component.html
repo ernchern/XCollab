@@ -1,6 +1,6 @@
 <span *ngIf="!comment.solution || showSolution">
-    <p>{{comment.body}}</p> <button type="button" class="btn btn-success btn-block" *ngIf="!comment.solution" (click)="markAsSolution()">Mark as Solution</button>
+    <p>{{comment.body}}</p> <button type="button" class="btn btn-success btn-block" [class.disabled]="canMarkAsSolution" *ngIf="!comment.solution" (click)="markAsSolution()">Mark as Solution</button>
 </span>
-<p><span class="blockquote-footer float-right"> by {{user?.name}} <span class="badge badge-pill badge-info" *ngIf="mastery>0">👑 {{mastery}}</span></span></p>
+<p><small> by <a routerLink="/user/{{user?.uid}}">{{user?.name}} </a><span class="badge badge-pill badge-info" *ngIf="mastery>0"> 👑 {{mastery}} </span> </small></p>
 <button *ngIf="comment.solution && !showSolution" class="btn btn-outline-success" (click)="showSolution=!showSolution">Show Solution</button>
 <button *ngIf="comment.solution && showSolution" class="btn btn-outline-success" (click)="showSolution=!showSolution">Hide Solution</button>

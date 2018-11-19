@@ -4,7 +4,8 @@ export class Discussion {
   author: string; // TODO USER
   title: string;
   body: string;
-  summary: string; // TODO SUMMARY
+  summary: string;
+  summaryAuthorUID: string;
   concerned: string[];
   solved: boolean;
   id: string;

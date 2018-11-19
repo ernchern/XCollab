@@ -17,6 +17,7 @@ export class CommentPreviewComponent implements OnInit {
   user: User;
   mastery: number;
   showSolution: Boolean;
+  canMarkAsSolution = true;
 
   constructor(
     private exerciseService: ExerciseService,
@@ -26,7 +27,8 @@ export class CommentPreviewComponent implements OnInit {
 
   getData(): void {
     const user_uid = this.comment.author;
-    console.log(user_uid)
+    this.canMarkAsSolution = (this.exerciseService.userUID != this.comment.author)
+    console.log('can mark as solution', this.canMarkAsSolution)
     this.exerciseService.getUser(user_uid).subscribe((user) => {
       this.user = user[0];
       console.log('getmastery')
@@ -37,7 +39,7 @@ export class CommentPreviewComponent implements OnInit {
 
   markAsSolution() {
     console.log("Mark as solution");
-    if (this.exerciseService.user.uid != this.comment.author) {
+    if (this.canMarkAsSolution) {
       this.comment.solution = true;
       const exercise_id = this.route.snapshot.paramMap.get('exercise_id');
       const discussion_id = this.route.snapshot.paramMap.get('discussion_id');
@@ -46,7 +48,7 @@ export class CommentPreviewComponent implements OnInit {
       // Update Mastery
       this.exerciseService.updateMastery(this.exercise.tags[0], 'c', this.user)
     } else {
-      console.log("User cannot set his comment as solution");
+      alert("User cannot set his comment as solution");
     }
   }
 
