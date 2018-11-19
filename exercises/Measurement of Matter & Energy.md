@@ -58,11 +58,11 @@
 
 (09) Define the following statements as being true or false.
 
-    Bad results are only the result of poor experimental performance
-    The definition of accuracy in an experiment is the ability to produce consistently similar results with repeated experiments
-    If an experiment’s results vary greatly between repeated performances, the results are always considered to be inaccurate
-    Measuring devices must be calibrated to give accurate results
-    You should always use the same measuring device throughout an experiment
+    * Bad results are only the result of poor experimental performance
+    * The definition of accuracy in an experiment is the ability to produce consistently similar results with repeated experiments
+    * If an experiment’s results vary greatly between repeated performances, the results are always considered to be inaccurate
+    * Measuring devices must be calibrated to give accurate results
+    * You should always use the same measuring device throughout an experiment
 
 (10) Identify the correct number of significant figure in the following numbers:
 
