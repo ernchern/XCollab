@@ -36,7 +36,11 @@ export class ExerciseComponent implements OnInit {
   prompts = [
     'Any problems understanding the terms?',
     'What is to like about this exercise?',
-    'Any questions on how to '
+    'Any questions on how this relates to an application?',
+    'Is something unclear?',
+    'Is there more to discuss about?',
+    'What was interesting about this exercise?',
+    'Why this exercise can be hard?'
   ]
   prompt: string;
 

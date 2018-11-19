@@ -1,5 +1,5 @@
 # XCollab
-### Ern Chern, Gabriel Lima, Oguz Serbetci and Thu Nguyen
+### Ern Chern, Gabriel Lima, Oğuz Serbetci and Thu Nguyen
 #### Developed as the Design Project for CS473 - Introduction to Social Computing, Fall 2018, KAIST
 
 Students who are studying for an exam may be stuck on a problem or want to discuss a topic more in depth but they have a hard time to do so because they may not know anyone who is on the same page as them. We introduce XCollab, where they can find, discuss and practice exercises with other students around the world online. In XCollab, students are motivated to think by themselves and particpate in discussions by our unique coin and mastery system and are able to acquire knowledge better by our discussion summary feature.
