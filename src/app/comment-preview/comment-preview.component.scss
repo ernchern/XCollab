@@ -1,1 +1,9 @@
 @import '../app.component.scss';
+
+a:not([href]):not([tabindex]) {
+    text-decoration: underline;
+}
+
+a:not([href]):not([tabindex]) {
+    text-decoration: underline;
+}
