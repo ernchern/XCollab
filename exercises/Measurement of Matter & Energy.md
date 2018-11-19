@@ -2,6 +2,8 @@
 
 ### Matter and Measurement
 
+Latex test: \( \mu \)
+
 (01) Rank the following items in order from smallest to largest size:
 
     * A peanut
