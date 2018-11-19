@@ -1,7 +1,3 @@
-## Measurement of Matter & Energy
-
-### Exercise 1: Matter and Measurement
-
 (01) Rank the following items in order from smallest to largest size:
 
     * A peanut
