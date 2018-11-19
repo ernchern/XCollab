@@ -1,6 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" routerLink="/search">XCollab</a>
+  <a class="navbar-brand" routerLink="/"><span style="color:#dd403a;"><strong>X</strong></span><span style="color:#2ab7ca;"><strong>Collab</strong></span></a>
 
   <span *ngIf="afAuth.user | async as user; else showLogin" style="display:inline;">
       <button class="meta btn float-right" (click)="logout()">Logout</button>
