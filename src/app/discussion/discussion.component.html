@@ -58,15 +58,22 @@
             <div class="card bg-light mx-auto rounded discussion">
                 <div class="card-body">
                     <div class="list-group">
-                        <a class="discussion list-group-item">
-                            <h3>{{discussion?.title}}
-                                <button *ngIf="!discussion?.solved" type="button" class="btn btn-discussion disabled btn-outline-danger float-right">Unsolved</button>
-                                <button *ngIf="discussion?.solved" type="button" class="btn btn-discussion btn-outline-success disabled float-right">Solved</button>
-                            </h3>
-                            <p><small> by <a routerLink="/user/{{author?.uid}}">{{author?.name}} </a><span class="badge badge-pill badge-info" *ngIf="mastery>0"> 👑 {{mastery}} </span> </small></p>
-
+                        <div class="discussion list-group-item">
+                            <div class="d-flex">
+                                <div class="mr-2">
+                                    <button type="button" ng-class="isConcerned'btn-primary disabled':'btn-info'" (click)="exerciseService.toggleConcern(exercise_id, discussion)" class="btn float-left" [class.btn-primary]="isConcerned" [class.disabled]="isConcerned" [class.btn-outline-primary]="!isConcerned" style="z-index:5;">✋{{discussion?.concerned.length}}</button>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h3>{{discussion?.title}} </h3>
+                                    <p><small> by <a routerLink="/user/{{author?.uid}}">{{author?.name}} </a><span class="badge badge-pill badge-info" *ngIf="mastery>0"> 👑 {{mastery}} </span> </small></p>
+                                </div>
+                                <div>
+                                    <button *ngIf="!discussion?.solved" type="button" class="btn btn-discussion disabled btn-outline-danger float-right">Unsolved</button>
+                                    <button *ngIf="discussion?.solved" type="button" class="btn btn-discussion btn-outline-success disabled float-right">Solved</button>
+                                </div>
+                            </div>
                             <p>{{discussion?.body}}</p>
-                        </a>
+                        </div>
                         <div *ngIf="this.discussion?.summary?.length > 0" class="list-group-item list-group-item-warning">
                             <span *ngIf="showSummary">
                                 <h4 class="alert-heading">Summary</h4>
@@ -103,3 +110,4 @@
             </div>
         </div>
     </div>
+</div>

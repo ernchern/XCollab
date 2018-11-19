@@ -15,7 +15,6 @@ export class DiscussionPreviewComponent implements OnInit {
   @Input('discussion') discussion: Discussion;
   @Input('exercise') exercise: Exercise;
   exercise_id: string;
-  commentsUnlocked: boolean = false;
   user: User;
   mastery: number;
   isConcerned: boolean;
@@ -27,6 +26,10 @@ export class DiscussionPreviewComponent implements OnInit {
     private router: Router
   ) { }
 
+  commentsUnlocked() {
+    return (this.exerciseService.user.unlocked.indexOf(this.discussion.id) > -1) || (this.discussion.author == this.exerciseService.userUID)
+  }
+
   getData(): void {
     const user_uid = this.discussion.author;
     this.exerciseService.getUser(user_uid).subscribe((user) => {
@@ -34,9 +37,6 @@ export class DiscussionPreviewComponent implements OnInit {
       this.mastery = this.exerciseService.getMastery(this.exercise, user[0])
     });
     console.log('discussion comments unlocked?: ', this.commentsUnlocked)
-    if (this.exerciseService.user.unlocked.indexOf(this.discussion.id) > -1) {
-      this.commentsUnlocked = true;
-    }
     this.isConcerned = this.exerciseService.isConcerned(this.discussion)
   }
 
@@ -52,7 +52,6 @@ export class DiscussionPreviewComponent implements OnInit {
     if(this.exerciseService.user.coins > 0 && !this.commentsUnlocked) {
       this.exerciseService.modifyCoins(-1);
       this.exerciseService.addUnlockedDiscussion(this.discussion.id);
-      this.commentsUnlocked = true;
       this.router.navigate(['exercise/' + this.exercise_id + '/discussion/' + this.discussion.id]);
       console.log("goes to comments - just unlocked")
     } else if (this.commentsUnlocked) {

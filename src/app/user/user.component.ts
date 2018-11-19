@@ -68,7 +68,7 @@ export class UserComponent implements OnInit {
       data: {
         labels: ['Talker', 'Solver', 'Questioner'],
         datasets: [{
-          label: "you",
+          label: this.user.name,
           data: this.mastery,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
@@ -82,7 +82,8 @@ export class UserComponent implements OnInit {
         scale: {
           ticks: {
             suggestedMin: 0,
-            suggestedMax: 20
+            suggestedMax: Math.max(...this.mastery)+2,
+            precision: 0
           }
         }
       }

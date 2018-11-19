@@ -17,6 +17,7 @@ export class DiscussionComponent implements OnInit {
   discussion: Discussion;
   author: User;
   mastery: number;
+  exercise_id: string;
   exercise: Exercise;
   showDiscussion: boolean = true;
   comments: Comment[];
@@ -31,6 +32,7 @@ export class DiscussionComponent implements OnInit {
   summaryAuthor: User;
   summaryMastery: number;
   showSummarize: Boolean = false;
+  isConcerned: boolean;
 
   constructor(
     private exerciseService: ExerciseService,
@@ -44,11 +46,12 @@ export class DiscussionComponent implements OnInit {
   }
 
   getData(): void {
-    const exercise_id = this.route.snapshot.paramMap.get('exercise_id');
+    this.exercise_id = this.route.snapshot.paramMap.get('exercise_id');
     const discussion_id = this.route.snapshot.paramMap.get('discussion_id');
-    this.exerciseService.getExercise(exercise_id).subscribe(e => this.exercise = e);
-    this.exerciseService.getDiscussion(exercise_id, discussion_id).subscribe(d => {
+    this.exerciseService.getExercise(this.exercise_id).subscribe(e => this.exercise = e);
+    this.exerciseService.getDiscussion(this.exercise_id, discussion_id).subscribe(d => {
       this.discussion = d
+      this.isConcerned = this.exerciseService.isConcerned(this.discussion)
       this.exerciseService.getUser(d.author).subscribe(u => {
         this.author = u[0];
         this.mastery = this.exerciseService.getMastery(this.exercise, u[0])
@@ -58,7 +61,7 @@ export class DiscussionComponent implements OnInit {
         this.summaryMastery = this.exerciseService.getMastery(this.exercise, u[0])
       })
     });
-    this.exerciseService.getComments(exercise_id, discussion_id).subscribe(d => this.comments = d);
+    this.exerciseService.getComments(this.exercise_id, discussion_id).subscribe(d => this.comments = d);
   }
 
   summarize(): void {

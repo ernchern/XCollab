@@ -104,6 +104,7 @@ export class ExerciseComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
+    this.prompt = this.getRandomPrompt()
     this.randomPrompt = setInterval(() => {
       this.prompt = this.getRandomPrompt()
     }, 30000);
