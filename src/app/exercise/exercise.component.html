@@ -59,9 +59,9 @@
             <div class="card primary bg-light mx-auto rounded discussion" [hidden]="!showDiscussion">
                 <div class="card-body">
                     <div class="list-group">
-                        <div *ngFor="let discussion of discussions">
+                        <span *ngFor="let discussion of discussions">
                             <app-discussion-preview [discussion]="discussion" [exercise]="exercise"></app-discussion-preview>
-                        </div>
+                        </span>
                     </div>
                     <br>
                     <form class="form" (ngSubmit)="checkLength()&&discussionForm.reset()" #discussionForm="ngForm">

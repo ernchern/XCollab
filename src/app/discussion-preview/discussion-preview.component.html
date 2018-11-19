@@ -1,7 +1,7 @@
-<div class="discussion list-group-item" [class.list-group-item-action]="commentsUnlocked" [class.list-group-item]="!commentsUnlocked" (click)="openComments()">
+<div class="discussion list-group-item" [class.list-group-item-action]="commentsUnlocked" (click)="openComments()">
     <div class="d-flex ">
         <div class="p-2">
-            <button type="button" ng-class="isConcerned'btn-primary disabled':'btn-info'" (click)="exerciseService.toggleConcern(exercise_id, discussion)" class="btn  float-left" [class.btn-primary]="isConcerned" [class.disabled]="isConcerned" [class.btn-outline-primary]="!isConcerned">✋{{discussion.concerned.length}}</button>
+            <button type="button" ng-class="isConcerned'btn-primary disabled':'btn-info'" (click)="exerciseService.toggleConcern(exercise_id, discussion)" class="btn float-left" [class.btn-primary]="isConcerned" [class.disabled]="isConcerned" [class.btn-outline-primary]="!isConcerned" style="z-index:5;">✋{{discussion.concerned.length}}</button>
         </div>
         <div class="p-2">
             <p>
