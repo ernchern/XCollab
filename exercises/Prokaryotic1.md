@@ -1,4 +1,4 @@
-# Prokaryotic Morphology and Arrangement
+## Prokaryotic Morphology and Arrangement
 
 Study the pictures and be able to identify. Use this document to fill in your Prokaryotic Worksheet. You should be able to fill in Morphology and Arrangement and Gram Stain (in 2 weeks).
 From reading your lab material, you should know the different morphology that bacteria can come in. The three we will focus on are: Coccus, Bacillus, and Spiral.
