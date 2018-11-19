@@ -6,6 +6,7 @@ import { Comment } from '../comment';
 import { User } from '../user';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-discussion',
@@ -34,7 +35,8 @@ export class DiscussionComponent implements OnInit {
   constructor(
     private exerciseService: ExerciseService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+	private modalService: NgbModal
   ) { }
 
   ngOnInit() {
@@ -74,6 +76,17 @@ export class DiscussionComponent implements OnInit {
     this.exerciseService.updateMastery(this.exercise.tags[0], 'c')
     // Update coins
     this.exerciseService.modifyCoins(2);
+  }
+  
+  checkLength(): boolean {
+    if (this.comment.body.length > 15) {
+      return true
+    }
+    return false
+  }
+
+  open(content) {
+    this.modalService.open(content);
   }
 
   goBack(): void {

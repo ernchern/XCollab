@@ -81,7 +81,7 @@ export class ExerciseComponent implements OnInit {
   }
 
   checkLength(): boolean {
-    if (this.discussion.title.length > 15 && this.discussion.body.length > 30) {
+    if (this.discussion.title.length > 10 && this.discussion.body.length > 30) {
       return true
     }
     return false
