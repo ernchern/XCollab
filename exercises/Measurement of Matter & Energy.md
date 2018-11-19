@@ -4,11 +4,11 @@
 
 (01) Rank the following items in order from smallest to largest size:
 
-    A peanut
-    Oxygen gas molecule
-    Carbon atom
-    A baseball
-    Grain of table salt
+    * A peanut
+    * Oxygen gas molecule
+    * Carbon atom
+    * A baseball
+    * Grain of table salt
 
 (02) Arrange the given units in order of magnitude from least to greatest and identity to which power of 10 they correspond to:
 
