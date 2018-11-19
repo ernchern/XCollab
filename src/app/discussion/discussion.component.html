@@ -68,8 +68,13 @@
                             <p>{{discussion?.body}}</p>
                         </a>
                         <div *ngIf="this.discussion?.summary?.length > 0" class="list-group-item list-group-item-warning">
-                            <p>Summary: {{discussion?.summary}}</p>
+                            <span *ngIf="showSummary">
+                                <h4 class="alert-heading">Summary</h4>
+                                <p>{{discussion?.summary}}</p>
+                            </span>
                             <p><small> by <a routerLink="/user/{{summaryAuthor?.uid}}">{{summaryAuthor?.name}} </a><span class="badge badge-pill badge-info" *ngIf="mastery>0"> 👑 {{summaryMastery}} </span> </small></p>
+                            <button *ngIf="!showSummary" class="btn btn-outline-warning" (click)="showSummary=!showSummary">Show Summary</button>
+                            <button *ngIf="showSummary" class="btn btn-outline-warning" (click)="showSummary=!showSummary">Hide Summary</button>
                         </div>
                         <button *ngIf="this.discussion?.summary?.length == 0 && this.comments?.length > 0" class="btn btn-primary" (click)="showSummarize=!showSummarize">Summarize (+2)</button>
                         <div *ngIf="showSummarize && this.discussion?.summary?.length == 0 && this.comments.length > 0">

@@ -75,7 +75,7 @@ export class DiscussionComponent implements OnInit {
     // Update mastery
     this.exerciseService.updateMastery(this.exercise.tags[0], 'c')
     // Update coins
-    this.exerciseService.modifyCoins(2);
+    this.exerciseService.modifyCoins(1);
   }
   
   checkLength(): boolean {

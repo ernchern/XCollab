@@ -63,6 +63,10 @@ export class DiscussionPreviewComponent implements OnInit {
     }
   }
 
+  report() {
+    alert("The comment has been reported, thank you :)")
+  }
+
   ngOnInit() {
     this.exercise_id = this.route.snapshot.paramMap.get('exercise_id');
     this.getData();

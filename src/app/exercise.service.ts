@@ -108,9 +108,9 @@ export class ExerciseService {
     if (!masteryUser) {
       masteryUser = this.user
     }
-    var masteryIndex = masteryUser.mastery.findIndex(m => m.tag == 'ml')
+    var masteryIndex = masteryUser.mastery.findIndex(m => m.tag == tag)
     if (masteryIndex < 0) {
-      masteryUser.mastery.push({tag: 'ml', actions: [action]})
+      masteryUser.mastery.push({tag: tag, actions: [action]})
     } else {
       masteryUser.mastery[masteryIndex].actions.push(action)
     }
