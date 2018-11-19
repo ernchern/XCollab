@@ -40,8 +40,13 @@ export class ExerciseService {
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Discussion;
         const id = a.payload.doc.id;
-        if (data.author == this.userUID && !this.user.unlocked.includes(id)) {
-          this.addUnlockedDiscussion(id)
+        console.log('here', this.userUID, this.user)
+        if (data.author == this.userUID) {
+          this.getUser(this.userUID).subscribe(u => {
+            if (!u[0].unlocked.includes(id)) {
+              this.addUnlockedDiscussion(id)
+            }
+          })
         }
         return { id, ...data }
       }))
