@@ -1,27 +1,46 @@
 # XCollab
 
+Students who are studying for an exam may be stuck on a problem or want to discuss a topic more in depth but they have a hard time to do so because they may not know anyone who is on the same page as them. We introduce XCollab, where they can find, discuss and practice exercises with other students around the world online. In XCollab, students are motivated to think by themselves and particpate in discussions by our unique coin and mastery system and are able to acquire knowledge better by our discussion summary feature.
+
+#### Ern Chern, Gabriel Lima, Oguz Serbetci and Thu Nguyen
+##### Developed as the Design Project for CS473 - Introduction to Social Computing, Fall 2018, KAIST
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.3.
 
-## Development server
+#### Exercise Service - /src/exercise.service.ts
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This code includes all the connection to Firebase and database handling.
 
-## Code scaffolding
+#### User - /src/app/exercise
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This folder includes the design and script to run the user page where statistics about the user are shown.
 
-## Build
+#### Search - /src/app/search
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+All the files in this folder are related to the main page, where exercises are presented. Search bar is not implemented.
 
-## Running unit tests
+#### Exercise - /src/app/exercise
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+This folder has the files that control the display of an exercise and discussions points, along with the coin unlocking system for discussions and discussion point submission.
 
-## Running end-to-end tests
+#### Discussion Preview - /src/app/discussion-preview
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+The files in this folder are related to the discussion display component, including the comments unlocking and discussion concern.
 
-## Further help
+#### Discussion - /src/app/discussion
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+This folder includes all the code and files that control a discussion and its comments display, along with the summarization and comments submission.
+
+#### Comment Preview - /src/app/comment-preview
+
+The files in this folder control the comments display and the solution marking, reporting and show/hide solution features.
+
+#### Exercises - /exercises
+
+All the exercises are inside this folder.
+
+#### Dependencies - /package.json
+
+All the dependencies are shown in this json file.
