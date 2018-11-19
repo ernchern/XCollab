@@ -44,12 +44,21 @@ export class ExerciseComponent implements OnInit {
   getData(): void {
     var id = this.route.snapshot.paramMap.get('exercise_id');
     this.exercise_id = id;
-    this.exerciseService.getExercise(id).subscribe(d => this.exercise = d);
-    this.exerciseService.getDiscussions(id).subscribe(d => this.discussions = d.sort((a, b) => b.concerned.length - a.concerned.length));
-    console.log(this.exerciseService.userUID)
-    this.exerciseService.getUser(this.exerciseService.userUID).subscribe(u => {
-      this.discussionUnlocked = u[0].unlocked.indexOf(id) > -1
+    this.exerciseService.getExercise(id).subscribe(e => {
+      this.exercise = e;
     });
+    this.exerciseService.getDiscussions(id).subscribe(d => {
+      this.discussions = d.sort((a, b) => b.concerned.length - a.concerned.length)
+      if (this.discussions.filter(d => d.author != this.exerciseService.userUID).length > 0) {
+        this.exerciseService.getUser(this.exerciseService.userUID).subscribe(u => {
+          this.discussionUnlocked = (u[0].unlocked.indexOf(id) > -1)
+        });
+      } else {
+        this.discussionUnlocked = true;
+      }
+
+    });
+    console.log(this.exerciseService.userUID)
   }
 
   saveDiscussion(): void {
@@ -81,13 +90,13 @@ export class ExerciseComponent implements OnInit {
   unlockDiscussion(): void {
     console.log(this.exerciseService.user.coins)
     if (!this.showDiscussion) {
-      if(this.exerciseService.user.coins > 0 && this.exerciseService.user.unlocked.indexOf(this.exercise_id) == -1) {
+      if(!this.discussionUnlocked && this.exerciseService.user.coins > 0 && this.exerciseService.user.unlocked.indexOf(this.exercise_id) == -1) {
         this.exerciseService.modifyCoins(-1);
         this.exerciseService.addPonderingUser(this.exercise_id, this.exercise);
         this.exerciseService.addUnlockedExercise(this.exercise_id);
         this.discussionUnlocked = true;
         this.showDiscussion = !this.showDiscussion;
-      } else if (this.exerciseService.user.unlocked.indexOf(this.exercise_id) > -1) {
+      } else if (this.discussionUnlocked || (this.exerciseService.user.unlocked.indexOf(this.exercise_id) > -1)) {
         this.showDiscussion = !this.showDiscussion;
       } else if(this.exerciseService.user.coins < 1) {
         alert("Not enough coins. You need 1 coin to unlock discussions.");
