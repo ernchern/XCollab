@@ -46,9 +46,12 @@ export class CommentPreviewComponent implements OnInit {
       this.exerciseService.setSolvedComment(exercise_id, discussion_id, this.comment.id);
       //this.exerciseService.modifyOthersCoins(this.user.uid, 2);
       // Update Mastery
-      this.exerciseService.updateMastery(this.exercise.tags[0], 'c', this.user)
+      // this.exerciseService.getUser(this.comment.author).subscribe(u => {
+      //   console.log("Update")
+      this.exerciseService.updateMastery(this.exercise.tags[0], 's', this.user)
+      // })
     } else {
-      alert("User cannot set his comment as solution");
+      alert("You cannot mark your own comment as a solution.");
     }
   }
 

@@ -114,8 +114,9 @@ export class ExerciseService {
     } else {
       masteryUser.mastery[masteryIndex].actions.push(action)
     }
-    const user = this.db.doc('users/'+this.userID);
+    const user = this.db.doc('users/'+masteryUser['id']);
     user.update({mastery: masteryUser.mastery});
+    console.log("MASTERY UPDATED:", tag, action, masteryUser.name, masteryUser.mastery)
   }
 
   getMastery(exercise, user):number {
