@@ -90,7 +90,7 @@
                     <br>
                     <form class="form" (ngSubmit)="checkLength()&&commentForm.reset()" #commentForm="ngForm">
                         <div class="input-group">
-                            <textarea class="form-control custom-control" required rows="3" [(ngModel)]="comment.body" placeholder="Leave a comment" aria-label="Body" name="body"></textarea>
+                            <textarea class="form-control custom-control" required rows="3" [(ngModel)]="comment.body" placeholder="Leave a comment." aria-label="Body" name="body"></textarea>
                             <button type="submit" class="btn btn-primary input-group-addon float-right" [disabled]="!commentForm.form.valid" (click)="checkLength()? saveComment() : open(content)">Submit (+2)</button>
                         </div>
                     </form>

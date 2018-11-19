@@ -72,13 +72,13 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Title</span>
                             </div>
-                            <input class="form-control custom-control" required [(ngModel)]="discussion.title" placeholder="Title" aria-label="Title" name="title">
+                            <input class="form-control custom-control" required [(ngModel)]="discussion.title" placeholder="What is your discussion about?" aria-label="Title" name="title">
                         </div>
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Body</span>
+                                <span class="input-group-text">Discussion</span>
                             </div>
-                            <textarea class="form-control custom-control" required rows="3" [(ngModel)]="discussion.body" placeholder="Body" aria-label="Body" name="body"></textarea>
+                            <textarea class="form-control custom-control" required rows="3" [(ngModel)]="discussion.body" placeholder="Elaborate your point." aria-label="Body" name="body"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary input-group-addon float-right" [disabled]="!discussionForm.form.valid" (click)="checkLength()? saveDiscussion() : open(content)">Submit (+2)</button>
                     </form>
