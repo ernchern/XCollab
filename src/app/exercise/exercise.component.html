@@ -65,7 +65,7 @@
                     </div>
                     <br>
                     <form class="form" (ngSubmit)="checkLength()&&discussionForm.reset()" #discussionForm="ngForm">
-                        <div *ngIf="empty" class="alert alert-warning" role="alert">
+                        <div *ngIf="empty">
                             {{getRandomPrompt()}}
                         </div>
                         <div class="input-group">
