@@ -14,6 +14,10 @@ export class SearchComponent implements OnInit {
   constructor(private exerciseService: ExerciseService) {
   }
 
+  searchAlert(): void {
+    alert('Search function is not yet released.')
+  }
+
   getExercises(): void {
     this.exerciseService.exercises.subscribe(exercises => this.exercises = exercises);
   }

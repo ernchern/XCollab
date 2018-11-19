@@ -33,7 +33,12 @@ export class ExerciseComponent implements OnInit {
 
   // FOR DISCUSSION PROMPT
   empty = false;
-  prompts = ['Hey, why don\'t you ask something?', 'Give something back to the community?']
+  prompts = [
+    'Any problems understanding the terms?',
+    'What is to like about this exercise?',
+    'Any questions on how to '
+  ]
+  prompt: string;
 
   getRandomPrompt(): string {
     var p_ind = Math.floor(Math.random() * this.prompts.length);
@@ -91,16 +96,25 @@ export class ExerciseComponent implements OnInit {
     this.modalService.open(content);
   }
 
+  randomPrompt
+
   ngOnInit() {
     this.getData();
+    this.randomPrompt = setInterval(() => {
+      this.prompt = this.getRandomPrompt()
+    }, 3000);
   }
+
+  ngOnDestroy() {
+    if (this.randomPrompt) {
+      clearInterval(this.randomPrompt);
+    }  }
 
   goBack(): void {
     this.location.back();
   }
 
   unlockDiscussion(): void {
-    console.log(this.exerciseService.user.coins)
     if (!this.showDiscussion) {
       if (!this.discussionUnlocked && this.exerciseService.user.coins > 0 && this.exerciseService.user.unlocked.indexOf(this.exercise_id) == -1) {
         this.exerciseService.modifyCoins(-1);
