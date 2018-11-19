@@ -1,5 +1,5 @@
 <span *ngIf="!comment.solution || showSolution">
-    <small><p><a href="#" class="text-muted mr-4" [class.disabled]="canMarkAsSolution" (click)="markAsSolution()">Mark as Solution</a>  <a href="#" class="text-muted">Report</a></p></small>
+    <small><p><a href="#" class="text-muted mr-4" [class.disabled]="canMarkAsSolution" (click)="markAsSolution()">Mark as Solution</a>  <a href="#" class="text-muted" (click)="report()">Report</a></p></small>
     <p>{{comment.body}}</p>
 </span>
 <p><small> by <a routerLink="/user/{{user?.uid}}">{{user?.name}} </a><span class="badge badge-pill badge-info" *ngIf="mastery>0"> 👑 {{mastery}} </span> </small></p>

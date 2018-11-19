@@ -58,6 +58,7 @@
             <!-- Discussion -->
             <div class="card primary bg-light mx-auto rounded discussion" [hidden]="!showDiscussion">
                 <div class="card-body">
+                    <div clas="dark dark-alert" ><p>There are no discussions yet, why don't you start one below!</p></div>
                     <div class="list-group">
                         <span *ngFor="let discussion of discussions">
                             <app-discussion-preview [discussion]="discussion" [exercise]="exercise"></app-discussion-preview>

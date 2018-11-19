@@ -52,6 +52,10 @@ export class CommentPreviewComponent implements OnInit {
     }
   }
 
+  report() {
+    alert("The comment has been reported, thank you :)")
+  }
+
   ngOnInit() {
     this.getData();
     this.showSolution = false;
