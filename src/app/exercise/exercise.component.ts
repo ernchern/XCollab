@@ -8,7 +8,7 @@ import { Exercise } from '../exercise';
 import { Discussion } from '../discussion';
 import { User } from '../user';
 
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-exercise',
@@ -30,11 +30,20 @@ export class ExerciseComponent implements OnInit {
   }
   exercise_id: string;
 
+  // FOR DISCUSSION PROMPT
+  empty = false;
+  prompts = ['Hey, why don\'t you ask something?', 'Give something back to the community?']
+
+  getRandomPrompt(): string {
+    var p_ind = Math.floor(Math.random() * this.prompts.length);
+    return this.prompts[p_ind];
+  }
+
   constructor(
     private exerciseService: ExerciseService,
     private route: ActivatedRoute,
     private location: Location,
-	private modalService: NgbModal
+    private modalService: NgbModal
   ) { }
 
   exerciseId(): string {
@@ -56,7 +65,9 @@ export class ExerciseComponent implements OnInit {
       } else {
         this.discussionUnlocked = true;
       }
-
+      if (this.discussions.filter(d => d.author == this.exerciseService.userUID).length < 1) {
+        this.empty = true;
+      }
     });
     console.log(this.exerciseService.userUID)
   }
@@ -67,18 +78,18 @@ export class ExerciseComponent implements OnInit {
     this.exerciseService.updateMastery(this.exercise.tags[0], 'd')
     this.exerciseService.modifyCoins(2);
   }
-  
+
   checkLength(): boolean {
-	if (this.discussion.title.length > 15 && this.discussion.body.length > 30) {
-		return true
-	}
-	return false
+    if (this.discussion.title.length > 15 && this.discussion.body.length > 30) {
+      return true
+    }
+    return false
   }
 
   open(content) {
     this.modalService.open(content);
   }
-  
+
   ngOnInit() {
     this.getData();
   }
@@ -90,7 +101,7 @@ export class ExerciseComponent implements OnInit {
   unlockDiscussion(): void {
     console.log(this.exerciseService.user.coins)
     if (!this.showDiscussion) {
-      if(!this.discussionUnlocked && this.exerciseService.user.coins > 0 && this.exerciseService.user.unlocked.indexOf(this.exercise_id) == -1) {
+      if (!this.discussionUnlocked && this.exerciseService.user.coins > 0 && this.exerciseService.user.unlocked.indexOf(this.exercise_id) == -1) {
         this.exerciseService.modifyCoins(-1);
         this.exerciseService.addPonderingUser(this.exercise_id, this.exercise);
         this.exerciseService.addUnlockedExercise(this.exercise_id);
@@ -98,7 +109,7 @@ export class ExerciseComponent implements OnInit {
         this.showDiscussion = !this.showDiscussion;
       } else if (this.discussionUnlocked || (this.exerciseService.user.unlocked.indexOf(this.exercise_id) > -1)) {
         this.showDiscussion = !this.showDiscussion;
-      } else if(this.exerciseService.user.coins < 1) {
+      } else if (this.exerciseService.user.coins < 1) {
         alert("Not enough coins. You need 1 coin to unlock discussions.");
       }
     } else {

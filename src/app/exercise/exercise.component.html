@@ -65,6 +65,9 @@
                     </div>
                     <br>
                     <form class="form" (ngSubmit)="checkLength()&&discussionForm.reset()" #discussionForm="ngForm">
+                        <div *ngIf="empty" class="alert alert-warning" role="alert">
+                            {{getRandomPrompt()}}
+                        </div>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Title</span>
