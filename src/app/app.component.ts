@@ -12,10 +12,10 @@ export class AppComponent {
   title = 'XCollab';
   currentUser: string;
 
-  constructor(public afAuth: AngularFireAuth, private exerciseService: ExerciseService) {
-  }
+  constructor(public afAuth: AngularFireAuth, private exerciseService: ExerciseService) {}
   login() {
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    this.afAuth.user.subscribe(authData => this.exerciseService.initUser(authData.uid));
   }
   logout() {
     this.afAuth.auth.signOut();

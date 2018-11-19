@@ -5,21 +5,22 @@
     <div class="row">
         <div class="column w-100">
             <ul style="list-style-type:none">
-            <li *ngFor="let exercise of exercises">
-                <div class="card mx-auto rounded">
-                    <div class="card-header bg-secondary">
+            <li class="mb-1" *ngFor="let exercise of exercises">
+                <div class="card border-secondary mx-auto rounded">
+                    <div class="card-header bg-light">
                         <a class="invisible-link" routerLink="/exercise/{{exercise.id}}">
                         <div style="float: left;">
                             <h3>{{exercise.title}}</h3>
+                            <p *ngIf="exercise?.pondering.length > 1"><small><span class="badge badge-pill badge-info">{{exercise?.pondering.length}} users are pondering</span></small></p>
                         </div>
                         </a>
                         <div style="float: right; display: inline;">
                             <p>by {{exercise.source}}</p>
                         </div>
                     </div>
-                    <div class="card-body" style="max-height: 300px;">
+                    <div class="card-body" style="max-height: 200px; overflow:hidden;">
                         <a class="invisible-link" routerLink="/exercise/{{exercise.id}}">
-                        <p><ngx-md [data]="exercise?.body"></ngx-md></p>
+                        <p><ngx-md [path]="exercise?.body"></ngx-md></p>
                         </a>
                     </div>
                 </div>

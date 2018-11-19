@@ -1,4 +1,6 @@
 <span *ngIf="!comment.solution || showSolution">
-    <p>{{comment.body}} j<span class="blockquote-footer float-right"> by {{user?.name}} <span class="badge badge-pill badge-info" *ngIf="mastery>0">👑 {{mastery}}</span></span></p> <button type="button" class="btn btn-block" *ngIf="!comment.solution" (click)="markAsSolution()">Mark as Solution</button>
+    <p>{{comment.body}}</p> <button type="button" class="btn btn-success btn-block" *ngIf="!comment.solution" (click)="markAsSolution()">Mark as Solution</button>
 </span>
-<button *ngIf="comment.solution && !showSolution" class="btn btn-primary" (click)="showSolution=!showSolution">Show Solution</button>
+<p><span class="blockquote-footer float-right"> by {{user?.name}} <span class="badge badge-pill badge-info" *ngIf="mastery>0">👑 {{mastery}}</span></span></p>
+<button *ngIf="comment.solution && !showSolution" class="btn btn-outline-success" (click)="showSolution=!showSolution">Show Solution</button>
+<button *ngIf="comment.solution && showSolution" class="btn btn-outline-success" (click)="showSolution=!showSolution">Hide Solution</button>

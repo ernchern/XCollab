@@ -46,9 +46,10 @@ export class ExerciseComponent implements OnInit {
     this.exercise_id = id;
     this.exerciseService.getExercise(id).subscribe(d => this.exercise = d);
     this.exerciseService.getDiscussions(id).subscribe(d => this.discussions = d.sort((a, b) => b.concerned.length - a.concerned.length));
-    // this.exerciseService.getUser(this.exerciseService.userID).subscribe(u => {this.discussionUnlocked = u[0].unlocked.indexOf(id) > -1
-    //                                                                           console.log('disc',this.discussionUnlocked)});
-    this.discussionUnlocked = this.exerciseService.user.unlocked.indexOf(id) > -1;
+    console.log(this.exerciseService.userUID)
+    this.exerciseService.getUser(this.exerciseService.userUID).subscribe(u => {
+      this.discussionUnlocked = u[0].unlocked.indexOf(id) > -1
+    });
   }
 
   saveDiscussion(): void {
@@ -82,6 +83,7 @@ export class ExerciseComponent implements OnInit {
     if (!this.showDiscussion) {
       if(this.exerciseService.user.coins > 0 && this.exerciseService.user.unlocked.indexOf(this.exercise_id) == -1) {
         this.exerciseService.modifyCoins(-1);
+        this.exerciseService.addPonderingUser(this.exercise_id, this.exercise);
         this.exerciseService.addUnlockedExercise(this.exercise_id);
         this.discussionUnlocked = true;
         this.showDiscussion = !this.showDiscussion;

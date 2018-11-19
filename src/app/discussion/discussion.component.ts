@@ -3,6 +3,7 @@ import { ExerciseService } from '../exercise.service';
 import { Discussion } from '../discussion';
 import { Exercise } from '../exercise';
 import { Comment } from '../comment';
+import { User } from '../user';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -13,6 +14,7 @@ import { Location } from '@angular/common';
 })
 export class DiscussionComponent implements OnInit {
   discussion: Discussion;
+  author: User;
   exercise: Exercise;
   showDiscussion: Boolean = true;
   comments: Comment[];
@@ -40,7 +42,12 @@ export class DiscussionComponent implements OnInit {
     const exercise_id = this.route.snapshot.paramMap.get('exercise_id');
     const discussion_id = this.route.snapshot.paramMap.get('discussion_id');
     this.exerciseService.getExercise(exercise_id).subscribe(e => this.exercise = e);
-    this.exerciseService.getDiscussion(exercise_id, discussion_id).subscribe(d => this.discussion = d);
+    this.exerciseService.getDiscussion(exercise_id, discussion_id).subscribe(d => {
+      this.discussion = d
+      this.exerciseService.getUser(d.author).subscribe(u => {
+        this.author = u[0];
+      })
+    });
     this.exerciseService.getComments(exercise_id, discussion_id).subscribe(d => this.comments = d);
   }
 

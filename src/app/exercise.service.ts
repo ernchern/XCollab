@@ -182,9 +182,18 @@ export class ExerciseService {
     }
   }
 
+  addPonderingUser(exercise_id, exercise): void {
+    console.log('add pondering user for exercise', exercise)
+    const reference = this.db.doc('exercises/'+exercise_id);
+    console.log(exercise.pondering)
+    exercise.pondering.push(this.user.uid);
+    console.log(exercise.pondering)
+    reference.update({pondering: exercise.pondering})
+  }
+
   addUnlockedExercise(exercise_id): void {
     const reference = this.db.doc('users/'+this.userID);
-    this.user.unlocked.push(exercise_id)
+    this.user.unlocked.push(exercise_id);
     reference.update({unlocked: this.user.unlocked});
   }
 

@@ -33,10 +33,19 @@ export class DiscussionPreviewComponent implements OnInit {
       this.user = user[0];
       this.mastery = this.exerciseService.getMastery(this.exercise, this.user)
     });
+    console.log('discussion comments unlocked?: ', this.commentsUnlocked)
     if (this.exerciseService.user.unlocked.indexOf(this.discussion.id) > -1) {
       this.commentsUnlocked = true;
     }
     this.isConcerned = this.exerciseService.isConcerned(this.discussion)
+  }
+
+  openComments() {
+    if (this.commentsUnlocked) {
+      this.router.navigate(['exercise/' + this.exercise_id + '/discussion/' + this.discussion.id]);
+    } else {
+      alert("You need to unlock the discussion.")
+    }
   }
 
   unlockComments() {
