@@ -1,6 +1,6 @@
-## 1: Measurement of Matter & Energy
+## Measurement of Matter & Energy
 
-### Matter and Measurement
+### Exercise 1: Matter and Measurement
 
 (01) Rank the following items in order from smallest to largest size:
 
