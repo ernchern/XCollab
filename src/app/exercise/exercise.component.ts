@@ -32,7 +32,8 @@ export class ExerciseComponent implements OnInit {
   exercise_id: string;
 
   // FOR DISCUSSION PROMPT
-  empty = false;
+  noDiscussion = false;
+  noParticipation = false;
   prompts = [
     'Any problems understanding the terms?',
     'What is to like about this exercise?',
@@ -40,7 +41,7 @@ export class ExerciseComponent implements OnInit {
     'Is something unclear?',
     'Is there more to discuss about?',
     'What was interesting about this exercise?',
-    'Why this exercise can be hard?'
+    'Why can this exercise be hard?'
   ]
   prompt: string;
 
@@ -68,15 +69,15 @@ export class ExerciseComponent implements OnInit {
     });
     this.exerciseService.getDiscussions(id).subscribe(d => {
       this.discussions = d.sort((a, b) => b.concerned.length - a.concerned.length)
+      this.noDiscussion = (this.discussions.length < 1)
+      this.noParticipation = (this.discussions.filter(d => d.author == this.exerciseService.userUID).length < 1)
+
       if (this.discussions.filter(d => d.author != this.exerciseService.userUID).length > 0) {
         this.exerciseService.getUser(this.exerciseService.userUID).subscribe(u => {
           this.discussionUnlocked = (u[0].unlocked.indexOf(id) > -1)
         });
       } else {
         this.discussionUnlocked = true;
-      }
-      if (this.discussions.filter(d => d.author == this.exerciseService.userUID).length < 1) {
-        this.empty = true;
       }
     });
     console.log(this.exerciseService.userUID)
