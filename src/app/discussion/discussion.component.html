@@ -87,10 +87,7 @@
                         <div *ngIf="showSummarize && this.discussion?.summary?.length == 0 && this.comments.length > 0">
                             <form class="form" (ngSubmit)="summarize(); summarizeForm.reset()" #summarizeForm="ngForm">
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Summarize</span>
-                                    </div>
-                                    <textarea class="form-control custom-control" required rows="3" [(ngModel)]="summary" placeholder="Body" aria-label="Body" name="body"></textarea>
+                                    <textarea class="form-control custom-control" required rows="3" [(ngModel)]="summary" placeholder="Summary" aria-label="Body" name="body"></textarea>
                                     <button type="submit" class="btn btn-primary input-group-addon float-right" [disabled]="!summarizeForm.form.valid">Submit (+2)</button>
                                 </div>
                             </form>
@@ -103,7 +100,7 @@
                     <form class="form" (ngSubmit)="checkLength()&&commentForm.reset()" #commentForm="ngForm">
                         <div class="input-group">
                             <textarea class="form-control custom-control" required rows="3" [(ngModel)]="comment.body" placeholder="Leave a comment." aria-label="Body" name="body"></textarea>
-                            <button type="submit" class="btn btn-primary input-group-addon float-right" [disabled]="!commentForm.form.valid" (click)="checkLength()? saveComment() : open(content)">Submit (+2)</button>
+                            <button type="submit" class="btn btn-primary input-group-addon float-right" [disabled]="!commentForm.form.valid" (click)="checkLength()? saveComment() : open(content)">Submit (+1)</button>
                         </div>
                     </form>
                 </div>

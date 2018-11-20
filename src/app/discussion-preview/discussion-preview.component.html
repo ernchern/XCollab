@@ -5,7 +5,7 @@
         </div>
         <div class="flex-grow-1 mr-2">
             <p>{{discussion.title}}</p>
-            <p><small> by <a routerLink="/user/{{user?.uid}}">{{user?.name}} </a><span class="badge badge-pill badge-info" *ngIf="mastery>0"> 👑 {{mastery}} </span><a href="#" class="text-muted ml-4" (click)="report()">Report</a></small></p>
+            <p><small> by <a routerLink="/user/{{user?.uid}}">{{user?.name}} </a><span class="badge badge-pill badge-info" *ngIf="mastery>0"> 👑 {{mastery}} </span><a href="javascript:void(0);" class="text-muted ml-4" (click)="report()">Report</a></small></p>
         </div>
         <div style="min-width:214px;">
             <button *ngIf="!discussion.solved" type="button" class="btn btn-discussion disabled btn-outline-danger float-right">Unsolved</button>
