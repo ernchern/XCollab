@@ -18,7 +18,7 @@
                             </div>
                             <div style="float: right; display: inline;">
                                 <p *ngIf="exercise?.url === undefined"> by {{exercise?.source}} </p>
-                                <a *ngIf="exercise?.url !== undefined" href="{{exercise?.url}}"> by {{exercise?.source}} </a>
+                                <p>by <a *ngIf="exercise?.url !== undefined" href="{{exercise?.url}}"> {{exercise?.source}} </a></p>
                             </div>
                         </div>
                         <div class="card-body" style="max-height: 200px; overflow:hidden;">
