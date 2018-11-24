@@ -1,7 +1,3 @@
-##### [Introduction to Reinforcement Learning](https://dl.acm.org/citation.cfm?id=551283) 
-
-##### Chapter 1: The Reinforcement Learning Problem
-
 **Exercise 1.1:** *Self-Play* Suppose, instead of playing against a random opponent, the reinforcement learning algorithm described above played against itself, with both sides learning. What do you think would happen in this case? Would it learn a different policy for selecting moves?
 
 **Exercise 1.2:** *Symmetries* Many tic-tac-toe positions appear different but are really the same because of symmetries. How might we amend the learning process described above to take advantage of this? In what ways would this change improve the learning process? Now think again. Suppose the opponent did not take advantage of symmetries. In that case, should we? Is it true, then, that symmetrically equivalent positions should necessarily have the same value?
