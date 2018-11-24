@@ -5,5 +5,6 @@ export class Exercise {
   tags: string[];
   body: string;
   pondering: string[];
+  url: string;
   discussions: Discussion[];
 }

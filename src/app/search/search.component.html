@@ -6,7 +6,7 @@
         <div class="column w-100">
             <ul style="list-style-type:none">
                 <li class="mb-1" *ngFor="let exercise of exercises">
-                    <div class="card border-secondary mx-auto rounded">
+                    <div class="card mx-auto rounded">
                         <div class="card-header bg-light">
                             <div style="float: left;">
                                 <a class="invisible-link" routerLink="/exercise/{{exercise.id}}">
@@ -17,7 +17,8 @@
                                 </a>
                             </div>
                             <div style="float: right; display: inline;">
-                                <p>by {{exercise.source}}</p>
+                                <p *ngIf="exercise?.url === undefined"> by {{exercise?.source}} </p>
+                                <a *ngIf="exercise?.url !== undefined" href="{{exercise?.url}}"> by {{exercise?.source}} </a>
                             </div>
                         </div>
                         <div class="card-body" style="max-height: 200px; overflow:hidden;">
