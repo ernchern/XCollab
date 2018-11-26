@@ -42,8 +42,8 @@
                             <p *ngIf="exercise?.pondering.length > 1"><small><span class="badge badge-pill badge-info">{{exercise?.pondering.length}} users are pondering</span> </small></p>
                         </div>
                         <div class="p-2">
-                            <p *ngIf="exercise?.url === undefined"> by {{exercise?.source}} </p>
-                            <p>by <a *ngIf="exercise?.url !== undefined" href="{{exercise?.url}}"> {{exercise?.source}} </a></p>
+                            <p *ngIf="exercise?.url === undefined">by {{exercise?.source}} </p>
+                            <p *ngIf="exercise?.url !== undefined">by <a href="{{exercise?.url}}"> {{exercise?.source}} </a></p>
                             <div class="btn-group" role="group">
                                 <button *ngIf="discussionUnlocked" (click)="unlockDiscussion()" class="btn btn-outline-dark float-right">Show discussions</button>
                                 <button *ngIf="!discussionUnlocked" (click)="unlockDiscussion()" class="btn float-right btn-warning">Unlock discussions  (-1 Coin) </button>
