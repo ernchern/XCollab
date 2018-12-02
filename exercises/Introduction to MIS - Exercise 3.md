@@ -1,4 +1,4 @@
-## Is Social Media Hurting Your Mental Health?
+### Is Social Media Hurting Your Mental Health?
 
 Watch the TED talk and write about your opinion.
 
